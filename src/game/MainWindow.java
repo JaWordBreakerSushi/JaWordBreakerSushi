@@ -1,4 +1,5 @@
 package game;
+
 import java.awt.Color;
 
 import javax.swing.JFrame;
@@ -7,22 +8,14 @@ import javax.swing.JPanel;
 
 public class MainWindow extends JFrame{
 
-	private JPanel _panel;
+	private Interface _game;
 	/*Constructor*/
 	public MainWindow() {
 	}
 	
 	/*show principal window*/
 	public void showWindow() {
-		this.setTitle("JaWordBreaker");
-		this.setSize(600, 800);
-		this.setLocationRelativeTo(null);
-		
-		_panel = new JPanel();
-		//_panel.setBackground(Color.GREEN);
-		this.setContentPane(_panel);
-		
-		this.setVisible(true);
+		_game = new Interface();
 	}
 	
 	/*Quit the game*/
@@ -30,16 +23,16 @@ public class MainWindow extends JFrame{
 		/*save*/
 		
 		/*close window*/
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	/*Getter and setter*/
 	public JPanel get_panel() {
-		return _panel;
+		return _game.get_gameArea();
 	}
 
-	public void set_panel(JPanel panel) {
-		_panel = panel;
+	public void set_panel(Interface panel) {
+		_game = panel;
 	}
 	
 }
