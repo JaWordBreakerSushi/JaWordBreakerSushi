@@ -1,6 +1,7 @@
 package bricks;
 
 import game.Game;
+import game.ImagePanel;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -8,59 +9,19 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class Brick {
+public class Brick extends JFrame{
 	private int _positionX;
 	private int _positionY;
-	private int _width = 55;
-	private int _height = 37;
+	private int _width;
+	private int _height;
 	/*Constructor*/
 	public Brick(Game game) {
-		try {
-            Image img = ImageIO.read(new File("./src/img/maki.png"));
-            Graphics graphicInstance = game.get_gameInterface().get_panel().getGraphics();
-            //Background image
-            
-            /*test the possible position*/            	
-            	//for(int i = 0; i < game.get_listOfBrick().size() ; i++) {
-            int index = game.get_listOfBrick().size();
-            System.out.println(index);
-
-            this.setPositionX();
-            this.setPositionY();
-            boolean AreTooCloseX = true;
-            boolean AreTooCloseY = true;
-
-            if (index > 0) {
-	            while(AreTooCloseX) {
-	             	this.setPositionX();
-	               	if(_positionX < game.get_listOfBrick().get(index - 1)._positionX + _width/2 && _positionX > game.get_listOfBrick().get(index - 1)._positionX - _width/2) {
-	               		this.setPositionX();
-	             		//System.out.println("DANS IF X");
-	                }
-	                else {
-	                	AreTooCloseX = false;
-	                }
-	            }
-	            
-	            while(AreTooCloseY) {
-	            	this.setPositionY();
-	               	if(_positionY < game.get_listOfBrick().get(index-1)._positionY + _height/2 && _positionY > game.get_listOfBrick().get(index-1)._positionY - _height/2) {
-	               		this.setPositionY();
-	               		//System.out.println("DANS IF Y");
-	              	}
-	               	else {
-	               		AreTooCloseY = false;
-	               	}
-	            }	
-            }
-            System.out.println(_positionX + ";" + _positionY);
-            graphicInstance.drawImage(img, _positionX, _positionY, _width, _height, game.get_gameInterface().get_panel());
-            
-        }
-		catch (IOException e) {
-            e.printStackTrace();
-		}
+		ImagePanel img = new ImagePanel("./src/img/maki.png");		
+		JPanel gameArea = game.get_gameInterface().get_panel();
+		gameArea.add(img);
 	}
 	
 	/*GETTERS AND SETTERS*/
