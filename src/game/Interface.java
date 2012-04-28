@@ -38,6 +38,7 @@ public class Interface extends JFrame {
         JLabel borderBottomBackground = new JLabel(new ImageIcon("./src/img/border_bottom.jpg"));
         
         ImagePanel menu = new ImagePanel("./src/img/background_menu.jpg");
+        
         Font fontName = new Font("Arial", Font.BOLD, 18);
         Font fontScore = new Font("Arial", Font.BOLD, 15);
         JLabel name = new JLabel("Amethyste");
@@ -93,7 +94,7 @@ public class Interface extends JFrame {
           
         content.addKeyListener(keyListener);
         content.setFocusable(true);
-        
+
         this.setContentPane(content);
 		
         this.setVisible(true);
