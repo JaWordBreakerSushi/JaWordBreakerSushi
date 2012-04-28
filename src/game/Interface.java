@@ -1,12 +1,15 @@
 package game;
 
 import java.awt.*;
+import java.awt.event.*;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class Interface extends JFrame{
+public class Interface extends JFrame {
 	
 	private JPanel _gameArea;
+    private PopupWindow popup = new PopupWindow();
 	
 	public static void main(String[] args){
 		Interface game = new Interface();
@@ -72,13 +75,28 @@ public class Interface extends JFrame{
         menu.add(score);
         content.add(menu);
         
+        KeyListener keyListener = new KeyListener() {
+            public void keyPressed(KeyEvent keyEvent) {
+              if(KeyEvent.getKeyText(keyEvent.getKeyCode()) == "Espace"){
+            	  JFrame popupWindow = popup.get_popupWindow();
+            	  if(!popupWindow.isVisible()){
+	            	  popupWindow.setVisible(true);
+	            	  popupWindow.setLocationRelativeTo(null);
+            	  }
+              }
+            }
+
+            public void keyReleased(KeyEvent keyEvent) {}
+            public void keyTyped(KeyEvent keyEvent) {}
+
+        };
+          
+        content.addKeyListener(keyListener);
+        content.setFocusable(true);
+        
         this.setContentPane(content);
 		
         this.setVisible(true);
-	}
-	
-	public void init(){
-		
 	}
 	
 	public JPanel get_gameArea(){
