@@ -19,6 +19,7 @@ public class Game {
 	private int _levelNumber;
 	private LinkedList<Brick> _listOfBrick = new LinkedList<Brick>();
 	private LinkedList<Ball> _listOfBall = new LinkedList<Ball>();
+	public boolean _start = false;
 	/**/
 	
 	
@@ -27,14 +28,6 @@ public class Game {
 		/*Create the main window*/
 		_gameInterface = new MainWindow();
 		_gameInterface.showWindow();
-		
-		_levelNumber = 1;
-		/*SELECTIONNER LE MOT
-		 * level 1 => 3lettres
-		 * level 2 => 4lettres
-		 * level n => n+2lettres*/
-		_selectedWord = "TEST";
-		this.prepareLevel();
 	}
 	
 	public void passToTheNextLevel() {
