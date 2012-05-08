@@ -30,20 +30,20 @@ public class Ball extends JPanel {
 		
 		
 		/*get the Panel for game*/
-		JPanel gameArea = game.get_gameInterface().get_panel();
-		
-		ImageIcon imgIcon = new ImageIcon("./src/img/bille.png");
-		JLabel img = new JLabel(imgIcon);
-		this.setVisible(true);
-		this.add(img);
-		
-		//System.out.println(_positionX);
-
-		this.setLocation(250, 480);
-		
-		gameArea.add(this);
-		
-		this.setVisible(true);		
+//		JPanel gameArea = game.get_gameInterface().get_panel();
+//		
+//		ImageIcon imgIcon = new ImageIcon("./src/img/bille.png");
+//		JLabel img = new JLabel(imgIcon);
+//		this.setVisible(true);
+//		this.add(img);
+//		
+//		//System.out.println(_positionX);
+//
+//		this.setLocation(250, 480);
+//		
+//		gameArea.add(this);
+//		
+//		this.setVisible(true);		
 	}
 	
 	public void move() {

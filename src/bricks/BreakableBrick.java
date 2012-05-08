@@ -1,10 +1,12 @@
 package bricks;
 
+import javax.swing.JPanel;
+
 import game.Game;
 
 public class BreakableBrick extends Brick{
-	public BreakableBrick(Game g, TypeOfGift gift) {
-		super(g);
+	public BreakableBrick(JPanel gameArea, TypeOfGift gift) {
+		super(gameArea);
 		
 	}
 }

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import javax.swing.JPanel;
+
 import bricks.*;
 
 
@@ -13,7 +15,6 @@ public class Game {
 	private ArrayList<String> _listOfWords = new ArrayList<String>();
 	private LinkedList<Integer> _listOfScores = new LinkedList<Integer>();
 
-	private MainWindow _gameInterface;
 	/*FAIRE UNE Intern class?*/
 	private String _selectedWord;
 	private int _levelNumber;
@@ -23,37 +24,39 @@ public class Game {
 	/**/
 	
 	
-	public Game() {
+	public Game(JPanel gameArea) {
 		
 		/*Create the main window*/
-		_gameInterface = new MainWindow();
-		_gameInterface.showWindow();
+		
+		_levelNumber = 1;
+		/*SELECTIONNER LE MOT
+		level 1 => 3lettres
+		level 2 => 4lettres
+		level n => n+2lettres*/
+		this.prepareLevel(gameArea);
 	}
 	
 	public void passToTheNextLevel() {
 		_levelNumber++;
 	}
 	
-	public void prepareLevel(){
+	public void prepareLevel(JPanel gameArea){
 		//System.out.println("AAAAAA");
+		
+		/*Depends of levelNumber*/
+		_selectedWord = "TEST";		
+		
 		/*letter's Bricks*/
 		for(int i = 0; i < _levelNumber+3; i++) {
 			System.out.println("APPEL BRIQUE");
-			_listOfBrick.add(new BreakableBrick(this, TypeOfGift.LETTER));
+			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.LETTER));
 		}
 		
 		/*Ball*/
-		_listOfBall.add(new Ball(this));
+//		_listOfBall.add(new Ball(this));
 	}
 
 	/*Getters and Setters*/
-	public MainWindow get_gameInterface() {
-		return _gameInterface;
-	}
-
-	public void set_gameInterface(MainWindow gameInterface) {
-		_gameInterface = gameInterface;
-	}
 	
 	public LinkedList<Brick> get_listOfBrick() {
 		return _listOfBrick;

@@ -23,6 +23,7 @@ import bricks.Brick;
 public class Interface extends JFrame {
 	
 	private JPanel _gameArea;
+	private Game _gameData;
     private PopupWindow popup = new PopupWindow();
 	private Container _content = getContentPane();
 	private JPanel _scoreList;
@@ -44,6 +45,7 @@ public class Interface extends JFrame {
 	}
 	
 	public void startInterface(){
+			
 		_content.setLayout(new BorderLayout(0,0));
 		_content.setBackground(jaune);
 		
@@ -116,12 +118,17 @@ public class Interface extends JFrame {
 	}
 	
 	public void playingInterface(){
-		
+				
 		_content.setLayout(new BoxLayout(_content, BoxLayout.X_AXIS));
         
         JPanel gamePanel = new JPanel(new BorderLayout(0,0));
-        _gameArea = new JPanel ( );
-       // _gameArea.setLayout(new GridLayout(3, 2, 5, 5));
+        _gameArea = new JPanel ();
+        _gameArea.setLayout(null);
+       //_gameArea.setLayout(new GridBagLayout());
+       //_gameArea.setLayout(new GridLayout(3, 2, 5, 5));
+        
+		_gameData = new Game(_gameArea);
+        
         JPanel borderTop = new JPanel();
         JPanel borderLeft = new JPanel();
         JPanel borderRight = new JPanel();
@@ -156,7 +163,7 @@ public class Interface extends JFrame {
 
         _gameArea.setBackground(new Color(247,217,129));
         //System.out.println(gamePanel.getSize()); //500 * 500
-
+        
         borderTop.add(borderTopBackground);
         borderLeft.add(borderLeftBackground);
         borderRight.add(borderRightBackground);

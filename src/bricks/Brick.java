@@ -22,12 +22,10 @@ public class Brick extends JPanel{
 	private int _width;
 	private int _height;
 	/*Constructor*/
-	public Brick(Game game) {
+	public Brick(JPanel gameArea) {
 		super();
-
-		/*get the Panel for game*/
-		JPanel gameArea = game.get_gameInterface().get_panel();
 		
+		/*get the Panel for game*/		
 		ImageIcon imgIcon = new ImageIcon("./src/img/maki.png");
 		JLabel img = new JLabel(imgIcon);
 		_width = imgIcon.getIconWidth();
@@ -38,7 +36,9 @@ public class Brick extends JPanel{
 		this.setPositionY();
 		//System.out.println(_positionX);
 		
-		System.out.println(this.getLocation());
+		//System.out.println("position : "+this.getLocation());
+		
+		this.setBounds(_positionX, _positionY, _width, _height);
 		
 		gameArea.add(this);
 		
