@@ -1,9 +1,14 @@
 package game;
 
 import java.awt.*;
+import java.io.*;
+
 import javax.swing.*;
 
-public class ImagePanel extends JPanel {
+public class ImagePanel extends JPanel implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
   Image bgimage = null;
   String _url;
   int _width;
@@ -26,6 +31,7 @@ public class ImagePanel extends JPanel {
     _width = bgimage.getWidth(null);
     _height = bgimage.getHeight(null);
     g.drawImage(bgimage, 1, 1, _width, _height, null);
+    System.out.println("IMG SIZE : " + _width +" , "+ _height);
   }
 
   

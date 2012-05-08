@@ -4,6 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import bricks.Brick;
+
 public class Interface extends JFrame{
 	
 	private JPanel _gameArea;
@@ -24,7 +26,8 @@ public class Interface extends JFrame{
         content.setLayout(new BoxLayout(content, BoxLayout.X_AXIS));
         
         JPanel gamePanel = new JPanel(new BorderLayout(0,0));
-        _gameArea = new JPanel();
+        _gameArea = new JPanel ();
+       // _gameArea.setLayout(new GridLayout(3, 2, 5, 5));
         JPanel borderTop = new JPanel();
         JPanel borderLeft = new JPanel();
         JPanel borderRight = new JPanel();
@@ -58,7 +61,7 @@ public class Interface extends JFrame{
         _gameArea.setBorder(new EmptyBorder(-5, -5, -5, -5) );
 
         _gameArea.setBackground(new Color(247,217,129));
-       
+        System.out.println(gamePanel.getSize()); //500 * 500
         borderTop.add(borderTopBackground);
         borderLeft.add(borderLeftBackground);
         borderRight.add(borderRightBackground);
@@ -67,13 +70,12 @@ public class Interface extends JFrame{
         gamePanel.add(borderLeft, BorderLayout.WEST);
         gamePanel.add(borderRight, BorderLayout.EAST);
         gamePanel.add(borderBottom, BorderLayout.SOUTH);
+        //gamePanel.setBackground(Color.BLUE);
         gamePanel.add(_gameArea, BorderLayout.CENTER);
         content.add(gamePanel);
         menu.add(name);
         menu.add(score);
         content.add(menu);
-        
-        
         
         this.setContentPane(content);
 		
