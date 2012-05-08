@@ -38,7 +38,7 @@ public class Game {
 		//System.out.println("AAAAAA");
 		/*letter's Bricks*/
 		for(int i = 0; i < _levelNumber+3; i++) {
-			//System.out.println("APPEL BRIQUE");
+			System.out.println("APPEL BRIQUE");
 			_listOfBrick.add(new BreakableBrick(this, TypeOfGift.LETTER));
 		}
 		

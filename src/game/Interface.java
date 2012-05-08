@@ -16,12 +16,14 @@ import java.io.OutputStream;
 import javax.swing.*;
 import javax.swing.border.*;
 
+
+
 import bricks.Brick;
 
 public class Interface extends JFrame {
 	
 	private JPanel _gameArea;
-    //private PopupWindow popup = new PopupWindow();
+    private PopupWindow popup = new PopupWindow();
 	private Container _content = getContentPane();
 	private JPanel _scoreList;
 	private static Color jaune = new Color(255,213,91);
@@ -118,7 +120,7 @@ public class Interface extends JFrame {
 		_content.setLayout(new BoxLayout(_content, BoxLayout.X_AXIS));
         
         JPanel gamePanel = new JPanel(new BorderLayout(0,0));
-        _gameArea = new JPanel ();
+        _gameArea = new JPanel ( );
        // _gameArea.setLayout(new GridLayout(3, 2, 5, 5));
         JPanel borderTop = new JPanel();
         JPanel borderLeft = new JPanel();
@@ -171,23 +173,23 @@ public class Interface extends JFrame {
 
         _content.add(menu);
         
-//        KeyListener keyListener = new KeyListener() {
-//            public void keyPressed(KeyEvent keyEvent) {
-//              if(KeyEvent.getKeyText(keyEvent.getKeyCode()) == "Espace"){
-//            	  JFrame popupWindow = popup.get_popupWindow();
-//            	  if(!popupWindow.isVisible()){
-//	            	  popupWindow.setVisible(true);
-//	            	  popupWindow.setLocationRelativeTo(null);
-//            	  }
-//              }
-//            }
-//
-//            public void keyReleased(KeyEvent keyEvent) {}
-//            public void keyTyped(KeyEvent keyEvent) {}
-//
-//        };
+        KeyListener keyListener = new KeyListener() {
+            public void keyPressed(KeyEvent keyEvent) {
+              if(KeyEvent.getKeyText(keyEvent.getKeyCode()) == "Espace"){
+            	  JFrame popupWindow = popup.get_popupWindow();
+            	  if(!popupWindow.isVisible()){
+	            	  popupWindow.setVisible(true);
+	            	  popupWindow.setLocationRelativeTo(null);
+            	  }
+              }
+            }
+
+            public void keyReleased(KeyEvent keyEvent) {}
+            public void keyTyped(KeyEvent keyEvent) {}
+
+        };
         
-//        _content.addKeyListener(keyListener);
+        _content.addKeyListener(keyListener);
         this.setContentPane(_content);
         this.setVisible(true);
 	}
