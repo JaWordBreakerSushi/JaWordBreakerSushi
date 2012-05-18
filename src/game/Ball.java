@@ -55,20 +55,28 @@ public class Ball extends JPanel {
 			_dY = - _dY;
 		}
 		//TEMPORAIRE!!!
-		if (_positionY >= game.Game.get_height())
+		if (_positionY >= game.Game.get_height() - this._height)
 		{
-			System.out.println("OUI");//?? ne se stoppe pas ??
-			_dY = 0;
-			_dY = 0;
+			//System.out.println("OUI");//?? ne se stoppe pas ??
+			//_dY = 0;
+			//_dX = 0;
+			_dY = - _dY;
 		}
 		
 		/*test bricks collision*/
 		for(int i = 0; i < Game.get_listOfBrick().size(); ++i)
 		{
-//			if (this._positionX >= game.get_listOfBrick().)
-//			{
-//				
-//			}
+			if (this._positionX >= Game.get_listOfBrick().get(i).getPositionX() - this._width &&
+					this._positionX <= Game.get_listOfBrick().get(i).getPositionX() + Game.get_listOfBrick().get(i).get_width() &&
+					this._positionY >= Game.get_listOfBrick().get(i).getPositionY() - this._height &&
+					this._positionY <= Game.get_listOfBrick().get(i).getPositionY() + Game.get_listOfBrick().get(i).get_height()
+					)
+			{
+				//System.out.println ("TOUCHE");
+				_dY = - _dY;
+				_dX = - _dX;
+				
+			}
 		}
 
 		this.display(_positionX, _positionY);
@@ -83,7 +91,7 @@ public class Ball extends JPanel {
 				{
 					while ( ! Thread.currentThread().isInterrupted() )
 					{
-						System.out.println(_positionY);
+						//System.out.println(_positionY);
 						move();
 						try {
 							Thread.sleep(30/*A changer pr le bonus vitesse*/);
