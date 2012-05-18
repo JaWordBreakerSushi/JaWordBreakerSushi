@@ -67,7 +67,7 @@ public class Brick extends JPanel{
 		_positionX = positionX;
 		_positionY = positionY;
 		this.setBounds(_positionX, _positionY, _width, _height);
-		System.out.println(_positionX +";"+ _positionY +";"+ _width +";"+ _height);
+		//System.out.println(_positionX +";"+ _positionY +";"+ _width +";"+ _height);
 		_gameArea.add(this);
 		this.setVisible(true);
 	}

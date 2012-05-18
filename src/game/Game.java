@@ -11,6 +11,11 @@ import bricks.*;
 
 public class Game {
 	
+	/*Data*/
+	private static int _width = 520;
+	private static int _height = 480;
+	
+	
 	/*Readed on scores dictionnary*/
 	private ArrayList<String> _listOfWords = new ArrayList<String>();
 	private LinkedList<Integer> _listOfScores = new LinkedList<Integer>();
@@ -43,6 +48,13 @@ public class Game {
 	public void prepareLevel(JPanel gameArea){
 		//System.out.println("AAAAAA");
 		
+		/*Ball to start*/
+		_listOfBall.add(new Ball(gameArea));
+		_listOfBall.get(0).display(this._width/2 - (_listOfBall.get(0).get_width()/2), this._height - _listOfBall.get(0).get_height());
+		
+		/*palet's Brick (just ONE)*/
+		//NOoooooooON//_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.LETTER));
+		
 		/*Depends of levelNumber*/
 		_selectedWord = "TEST";		
 		
@@ -60,7 +72,6 @@ public class Game {
 		//-1???
 		int widthLargestBrick = 86;
 		int heightHigherBrick = 44;
-		//System.out.println("PLUS LARGE ET LONG" + widthLargestBrick + ";" + heightHigherBrick);
 		/*magic's' Bricks*/
 		for(int i = 0; i < _levelNumber+4; i++) {
 			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.MAGIC));
@@ -83,8 +94,8 @@ public class Game {
 		}
 		
 		/*place bricks*/
-		int bricksPerLine = (int)(565/widthLargestBrick) -1;
-		int bricksPerCol = (int) (565/heightHigherBrick) -1;
+		int bricksPerLine = (int)(this._width/widthLargestBrick) -1;
+		int bricksPerCol = (int) (this._height/heightHigherBrick) -1;
 		Brick brickToPlace = null;
 
 		/*ligne and col*/
@@ -94,7 +105,6 @@ public class Game {
 		for (int i =0; i <_listOfBrick.size(); ++i)
 		{
 			justPosisionnedABrick = false;
-			System.out.println(i);
 			do
 			{
 				int index = (int)(Math.random() * ((_listOfBrick.size() -0) - 0)) + 0;
@@ -102,7 +112,6 @@ public class Game {
 				brickToPlace = _listOfBrick.get(index);
 				if (!brickToPlace.is_isPositionned())
 				{
-					System.out.println("Brique n° " + index);
 					brickToPlace.display(k*widthLargestBrick, j*heightHigherBrick);
 					brickToPlace.set_isPositionned(true);
 					justPosisionnedABrick = true;
@@ -116,14 +125,7 @@ public class Game {
 			}
 			while (!justPosisionnedABrick);
 		}
-		
-		
-		/*Ball*/
-//		_listOfBall.add(new Ball(this));
-		
-		/*palet's Brick (just ONE)*/
-		//NOoooooooON//_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.LETTER));
-	
+		_listOfBall.get(0).startBallTimer();
 	}
 
 	/*Getters and Setters*/
@@ -135,4 +137,20 @@ public class Game {
 	public void set_listOfBrick(LinkedList<Brick> listOfBrick) {
 		_listOfBrick = listOfBrick;
 	}
+
+	public static int get_width() {
+		return _width;
+	}
+
+	public void set_width(int width) {
+		_width = width;
+	}
+
+	public static int get_height() {
+		return _height;
+	}
+
+	public void set_height(int height) {
+		_height = height;
+	}	
 }
