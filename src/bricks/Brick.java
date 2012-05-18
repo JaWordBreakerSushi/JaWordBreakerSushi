@@ -1,17 +1,10 @@
 package bricks;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+
 import game.Game;
-import game.ImagePanel;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.LayoutManager2;
-import java.io.*;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,41 +14,88 @@ public class Brick extends JPanel{
 	private int _positionY;
 	private int _width;
 	private int _height;
+	private JPanel _gameArea;
+	private boolean _isPositionned;
+	
 	/*Constructor*/
-	public Brick(JPanel gameArea) {
+	public Brick(JPanel gameArea, String url) {
 		super();
 		
-		/*get the Panel for game*/		
-		ImageIcon imgIcon = new ImageIcon("./src/img/maki.png");
+		//System.out.println(url);
+		ImageIcon imgIcon = new ImageIcon(url);
 		JLabel img = new JLabel(imgIcon);
 		_width = imgIcon.getIconWidth();
 		_height = imgIcon.getIconHeight();
-		this.setVisible(true);
 		this.add(img);
-		this.setPositionX();
-		this.setPositionY();
-		//System.out.println(_positionX);
-		
-		//System.out.println("position : "+this.getLocation());
-		
-		this.setBounds(_positionX, _positionY, _width, _height);
-		
-		gameArea.add(this);
-		
-		this.setVisible(true);		
+		this._isPositionned = false;
+			
+		_gameArea = gameArea;		
 	}
 	
 	/*GETTERS AND SETTERS*/
 	public int getPositionX() {
 		return _positionX;
 	}
-	public void setPositionX() {
-		this._positionX = (int)(Math.random() * ((600 -_width) - _width)) + _width;
+	public void setPositionX() {		
+		
+//		this._positionX = (int)(Math.random() * ((230 -_width) - _width)) + _width;
+//		LinkedList<Brick> listOfBricks = Game.get_listOfBrick();
+//		Iterator<Brick> iter = listOfBricks.iterator();
+//		
+//		for (int i = 0; i< listOfBricks.size(); ++i)
+//		{
+//			if (iter.hasNext())
+//			{
+//				Brick prevBrick= iter.next();
+//				if( this._positionX < (prevBrick._positionX + prevBrick._width))
+//				{
+//					this._positionX += prevBrick._positionX + prevBrick._width - this._positionX;
+//					
+//					//if out of screen
+////					if (this._positionX >= 230 - this._width)
+////					{
+////						this._positionX -= prevBrick._positionX + prevBrick._width - this._positionX; 
+////						//this.setPositionY();
+////					}
+//				}
+//			}
+//		}
 	}
+	
+	public void display(int positionX, int positionY) {
+		_positionX = positionX;
+		_positionY = positionY;
+		this.setBounds(_positionX, _positionY, _width, _height);
+		//System.out.println(_positionX +";"+ _positionY +";"+ _width +";"+ _height);
+		_gameArea.add(this);
+		this.setVisible(true);
+	}
+
 	public int getPositionY() {
 		return _positionY;
 	}
 	public void setPositionY() {
-		this._positionY = (int)(Math.random() * ((800 - _height)- (_height + 100) )) + _height;
+		
 	}
+	
+	public int get_width() {
+		return _width;
+	}
+
+	public int get_height() {
+		return _height;
+	}
+
+	public boolean is_isPositionned() {
+		return _isPositionned;
+	}
+
+	public void set_isPositionned(boolean isPositionned) {
+		_isPositionned = isPositionned;
+	}
+
+	public JPanel get_gameArea() {
+		return _gameArea;
+	}
+	
 }

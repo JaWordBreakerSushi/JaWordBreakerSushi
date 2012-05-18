@@ -31,7 +31,7 @@ public class ImagePanel extends JPanel implements Serializable {
     _width = bgimage.getWidth(null);
     _height = bgimage.getHeight(null);
     g.drawImage(bgimage, 1, 1, _width, _height, null);
-    System.out.println("IMG SIZE : " + _width +" , "+ _height);
+    //System.out.println("IMG SIZE : " + _width +" , "+ _height);
   }
 
   

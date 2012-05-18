@@ -6,7 +6,6 @@ import game.Game;
 
 public class BreakableBrick extends Brick{
 	public BreakableBrick(JPanel gameArea, TypeOfGift gift) {
-		super(gameArea);
-		
+		super(gameArea, gift.getUrl());
 	}
 }
