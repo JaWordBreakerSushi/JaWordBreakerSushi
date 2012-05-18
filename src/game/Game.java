@@ -53,30 +53,33 @@ public class Game {
 		
 		/*bonus' Bricks*/
 		for(int i = 0; i < _levelNumber+3; i++) {
-			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.LETTER));
+			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.BONUS));
 		}
-		int widthLargestBrick = _listOfBrick.getLast().get_width();
-		int heightHigherBrick = _listOfBrick.getLast().get_height();
-		
+//		int widthLargestBrick = _listOfBrick.getLast().get_width();
+//		int heightHigherBrick = _listOfBrick.getLast().get_height();
+		//-1???
+		int widthLargestBrick = 86;
+		int heightHigherBrick = 44;
+		//System.out.println("PLUS LARGE ET LONG" + widthLargestBrick + ";" + heightHigherBrick);
 		/*magic's' Bricks*/
 		for(int i = 0; i < _levelNumber+4; i++) {
-			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.LETTER));
+			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.MAGIC));
 		}
 		
 		/*temps' Bricks*/
 		for(int i = 0; i < _levelNumber+1; i++) {
-			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.LETTER));
+			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.TEMPORAL));
 		}
 		
 		
 		/*fixe's Bricks*/
 		for(int i = 0; i < _levelNumber+8; i++) {
-			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.LETTER));
+			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.FIXE));
 		}	
 			
 		/*movable's Bricks*/
 		for(int i = 0; i < _levelNumber+4; i++) {
-			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.LETTER));
+			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.MOVABLE));
 		}
 		
 		/*place bricks*/
@@ -94,8 +97,6 @@ public class Game {
 			System.out.println(i);
 			do
 			{
-				//if (brickToPlace != null)
-				//	brickToPlace.set_isPositionned(true);
 				int index = (int)(Math.random() * ((_listOfBrick.size() -0) - 0)) + 0;
 				
 				brickToPlace = _listOfBrick.get(index);
