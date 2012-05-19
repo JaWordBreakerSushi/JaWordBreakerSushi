@@ -16,13 +16,15 @@ public class Brick extends JPanel{
 	private int _height;
 	private JPanel _gameArea;
 	private boolean _isPositionned;
+	private TypeOfGift _gift;
 	
 	/*Constructor*/
-	public Brick(JPanel gameArea, String url) {
+	public Brick(JPanel gameArea, TypeOfGift gift/*String url*/) {
 		super();
 		
+		_gift = gift;
 		//System.out.println(url);
-		ImageIcon imgIcon = new ImageIcon(url);
+		ImageIcon imgIcon = new ImageIcon(gift.getUrl());
 		JLabel img = new JLabel(imgIcon);
 		_width = imgIcon.getIconWidth();
 		_height = imgIcon.getIconHeight();
@@ -37,30 +39,9 @@ public class Brick extends JPanel{
 	public int getPositionX() {
 		return _positionX;
 	}
-	public void setPositionX() {		
-		
-//		this._positionX = (int)(Math.random() * ((230 -_width) - _width)) + _width;
-//		LinkedList<Brick> listOfBricks = Game.get_listOfBrick();
-//		Iterator<Brick> iter = listOfBricks.iterator();
-//		
-//		for (int i = 0; i< listOfBricks.size(); ++i)
-//		{
-//			if (iter.hasNext())
-//			{
-//				Brick prevBrick= iter.next();
-//				if( this._positionX < (prevBrick._positionX + prevBrick._width))
-//				{
-//					this._positionX += prevBrick._positionX + prevBrick._width - this._positionX;
-//					
-//					//if out of screen
-////					if (this._positionX >= 230 - this._width)
-////					{
-////						this._positionX -= prevBrick._positionX + prevBrick._width - this._positionX; 
-////						//this.setPositionY();
-////					}
-//				}
-//			}
-//		}
+	
+	public void setPositionX(int x) {		
+		_positionX = x;
 	}
 	
 	public void display(int positionX, int positionY) {
@@ -71,12 +52,21 @@ public class Brick extends JPanel{
 		_gameArea.add(this);
 		this.setVisible(true);
 	}
+	
+	public void hide () {
+		_width = 0;
+		_height = 0;
+		_positionX = -10;
+		_positionY = -10;
+		this.setBounds(_positionX, _positionY, _width, _height);
+		//this.setVisible(false);
+	}
 
 	public int getPositionY() {
 		return _positionY;
 	}
-	public void setPositionY() {
-		
+	public void setPositionY(int y) {
+		_positionY= y;
 	}
 	
 	public int get_width() {
@@ -98,5 +88,14 @@ public class Brick extends JPanel{
 	public JPanel get_gameArea() {
 		return _gameArea;
 	}
+	
+	public TypeOfGift get_gift() {
+		return _gift;
+	}
+
+	public void set_gift(TypeOfGift gift) {
+		_gift = gift;
+	}
+
 	
 }

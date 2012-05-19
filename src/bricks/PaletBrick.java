@@ -6,6 +6,6 @@ import game.Game;
 
 public class PaletBrick extends Brick{
 	public PaletBrick(JPanel gameArea, TypeOfGift gift) {
-		super(gameArea, gift.getUrl());
+		super(gameArea, gift);
 	}
 }

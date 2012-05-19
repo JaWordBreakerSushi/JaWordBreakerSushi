@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import bricks.Brick;
+import bricks.TypeOfGift;
 
 public class Ball extends JPanel {
 	private int _positionX;
@@ -75,6 +76,17 @@ public class Ball extends JPanel {
 				//System.out.println ("TOUCHE");
 				_dY = - _dY;
 				_dX = - _dX;
+				
+				TypeOfGift type;
+				type = Game.get_listOfBrick().get(i).get_gift();
+				//In function of brick's type
+				switch(type)
+				{
+					case FIXE : ;
+					case MOVABLE : /*bouger en fonction du déplacement de la bille*/;
+					default : Game.get_listOfBrick().get(i).hide();
+						;
+				}
 				
 			}
 		}
