@@ -19,8 +19,10 @@ public class Ball extends JPanel {
 	private int _width;
 	private int _height;
 	private float _masse;
+	/*to implement?*/
 	private double _friction = 0.1;
 	private JPanel _gameArea;
+	private int _timeToWait = 30;
 	
 	public Ball(JPanel gameArea) {
 	_gameArea = gameArea;
@@ -58,20 +60,33 @@ public class Ball extends JPanel {
 		
 		if (this._positionY >= Game.get_height() - this._height)
 		{
-			System.out.println ("FAIL");
+			//System.out.println ("FAIL");
 			_dX = 0;
 			_dY = 0;
 			//this.setVisible(false);
 			/*TEST POUR SAVOIR SI NOUVELLE BILLE (VIE?)*/
 		}
-		
+		//System.out.println(Game.get_palet().get_width());
+		//System.out.println("1/8 : "+(Game.get_palet().get_width()*20/100));
+		//System.out.println("7/8 : "+(Game.get_palet().get_width()*80/100));
 		if (this._positionX >= Game.get_palet().getPositionX() - this._width &&
 				this._positionX <= Game.get_palet().getPositionX() + Game.get_palet().get_width() &&
 				this._positionY >= Game.get_palet().getPositionY() - this._height &&
 				this._positionY <= Game.get_palet().getPositionY() + Game.get_palet().get_height()
 				)
 		{
-			//System.out.println("TOUCHE");
+			///keep speed
+			if (this._positionX >= Game.get_palet().getPositionX() + (Game.get_palet().get_width()*30/100) &&
+					this._positionX <= Game.get_palet().getPositionX() + (Game.get_palet().get_width()*70/100))
+			{
+				System.out.println("MILIEU");
+				
+			}
+			//speed ++
+			else
+			{
+				_timeToWait --;
+			}
 			double tps = _dY;
 			_dY = - _dX;
 			_dX = tps;
@@ -90,6 +105,8 @@ public class Ball extends JPanel {
 				double tps = _dY;
 				_dY = - _dX;
 				_dX = tps;
+				
+				_timeToWait ++;
 				
 				TypeOfGift type;
 				type = Game.get_listOfBrick().get(i).get_gift();
@@ -120,7 +137,8 @@ public class Ball extends JPanel {
 						//System.out.println(_positionY);
 						move();
 						try {
-							Thread.sleep(30/*A changer pr le bonus vitesse*/);
+							Thread.sleep(_timeToWait/*A changer pr le bonus vitesse*/);
+							//System.out.println(_timeToWait);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
