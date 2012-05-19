@@ -7,25 +7,19 @@ import game.Game;
 
 public class BreakableBrick extends Brick{
 	
+	private int _typeOfGift;
+	
 	public BreakableBrick(JPanel gameArea, TypeOfGift gift) {
 		super(gameArea, gift/*.getUrl()*/);
 		
 		/*choice of gift*/
-		int giftChosen = (int)(Math.random() * (5 -0) - 0) + 0;
+		int giftChosen = (int)(Math.random() * (6 -0) - 0) + 0/*FOR TEST*//*0*/;
 		System.out.println(giftChosen);
-		switch(giftChosen)
-		{
-		case 0:
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
-			break;
-		}
-		
+		_typeOfGift = giftChosen;
+		super.set_typeOfGift(giftChosen);
 	}
+	
+//	public void applicationOfGift() {
+//		
+//	}
 }

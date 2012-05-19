@@ -18,11 +18,11 @@ public class Ball extends JPanel {
 	private int _size;
 	private int _width;
 	private int _height;
-	private float _masse;
+	private float _masse = 0;
 	/*to implement?*/
 	private double _friction = 0.1;
 	private JPanel _gameArea;
-	private int _timeToWait = 20;
+	private int _timeToWait = 30;
 	
 	public Ball(JPanel gameArea) {
 	_gameArea = gameArea;
@@ -63,14 +63,14 @@ public class Ball extends JPanel {
 			_dX = 0;
 			_dY = 0;
 			this.display(-100, -100);
-			this.setVisible(false);
-			/*TEST POUR SAVOIR SI NOUVELLE BILLE (VIE?)*/
+			/*If ball (=> life)*/
 			if (Game.get_listOfBall().size() > 1)
 			{
 				//Launch a new ball
 				Game.get_listOfBall().getLast().display(Game.get_width()/2 - (Game.get_listOfBall().get(0).get_width()/2), Game.get_palet().getPositionY() - Game.get_listOfBall().get(0).get_height());
 				Game.get_listOfBall().removeFirst();
 				game.Interface.displayNbBalls(Game.get_listOfBall().size());
+				Game.get_palet().display(Game.get_width()/2 - Game.get_palet().get_width()/2, Game.get_height() - Game.get_palet().get_height());
 			}
 			else
 			{
@@ -91,19 +91,19 @@ public class Ball extends JPanel {
 			if (this._positionX >= Game.get_palet().getPositionX() + (Game.get_palet().get_width()*30/100) &&
 					this._positionX <= Game.get_palet().getPositionX() + (Game.get_palet().get_width()*70/100))
 			{
-				//System.out.println("MILIEU");
+				//double slower
 				double tps = _dY;
 				_dY = - _dX;
 				_dX = tps;
-				_timeToWait --;
+				_timeToWait += 2;
 			}
-			//speed ++
+			//slower
 			else
 			{
 				double tps = _dY;
 				_dY = - _dX;
 				_dX = tps;
-				_timeToWait -= 2;
+				_timeToWait ++;
 			}
 			
 		}
@@ -123,7 +123,9 @@ public class Ball extends JPanel {
 				double tps = _dY;
 				_dY = - _dX;
 				_dX = tps;
-				_timeToWait ++;
+				//speeder
+				if (_timeToWait > 10)
+					_timeToWait --;
 				
 				TypeOfGift type;
 				type = Game.get_listOfBrick().get(i).get_gift();
@@ -132,7 +134,7 @@ public class Ball extends JPanel {
 				switch(type)
 				{
 					case BALL : /*Launch a new ball (+)*/
-								System.out.println("BALL!!");
+								//System.out.println("BALL!!");
 								Game.get_listOfBall().add(new Ball(Game.get_gameArea()));
 								game.Interface.displayNbBalls(Game.get_listOfBall().size());
 								Game.get_listOfBrick().get(i).hide();
@@ -159,7 +161,10 @@ public class Ball extends JPanel {
 								game.Interface.displayLetter(Game.get_listOfBrick().get(i).get_letter());
 								Game.get_listOfBrick().get(i).hide();
 								Game.set_score(Game.get_score() + 10);
-								break;			
+								break;
+					case MAGIC :Game.get_listOfBrick().get(i).applicationOfGift();
+								Game.get_listOfBrick().get(i).hide();
+								break;
 								
 					default : Game.get_listOfBrick().get(i).hide();
 								break;
@@ -253,5 +258,13 @@ public class Ball extends JPanel {
 
 	public void set_masse(float masse) {
 		_masse = masse;
+	}
+
+	public int get_timeToWait() {
+		return _timeToWait;
+	}
+
+	public void set_timeToWait(int timeToWait) {
+		_timeToWait = timeToWait;
 	}
 }

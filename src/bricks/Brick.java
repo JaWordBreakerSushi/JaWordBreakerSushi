@@ -3,6 +3,7 @@ package bricks;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import game.Ball;
 import game.Game;
 
 import javax.swing.ImageIcon;
@@ -18,6 +19,7 @@ public class Brick extends JPanel{
 	private boolean _isPositionned;
 	private TypeOfGift _gift;
 	private char letter;
+	private int _typeOfGift;
 	
 	/*Constructor*/
 	public Brick(JPanel gameArea, TypeOfGift gift/*String url*/) {
@@ -79,6 +81,44 @@ public class Brick extends JPanel{
 		return 1;
 	}
 	
+	public void applicationOfGift() {
+		System.out.println("CAS : " + _typeOfGift);
+		switch(_typeOfGift)
+		{
+		/* ++ ball(s)*/
+		case 0:
+				Game.get_listOfBall().add(new Ball(Game.get_gameArea()));
+				Game.get_listOfBall().getLast().display(Game.get_listOfBall().getFirst().get_positionX(), Game.get_listOfBall().getFirst().get_positionX());
+				Game.get_listOfBall().getLast().startBallTimer();
+				game.Interface.displayNbBalls(Game.get_listOfBall().size());
+			break;
+		/*random speed*/
+		case 1:
+			int speedModificator;
+			//speedModificator = (int)(Math.random() * (10 -10) - 10) + 10;
+			speedModificator = (int)(Math.random() * (5- (-5))) + (-5);
+			System.out.println("CHANGMENT SPEED : " + speedModificator);
+			for(int i = 0; i< Game.get_listOfBall().size(); ++i)
+			{
+				Game.get_listOfBall().get(i).set_timeToWait(Game.get_listOfBall().get(i).get_timeToWait() + speedModificator);
+			}
+			break;
+		/*ball = bombe*/
+		case 2:
+			break;
+		/*immobilisation of palet for a little moment*/
+		case 3:
+			break;
+		/*modification palet size (bigger)*/
+		case 4:
+			break;
+		/*modification palet size (smaller)*/
+		case 5:
+			break;
+		/*Ball size modification?*/
+		}
+	}
+	
 	/*Getters and Setters*/
 
 	public int getPositionY() {
@@ -131,5 +171,14 @@ public class Brick extends JPanel{
 	public char get_letter() {
 		return letter;
 	}
+
+	public void set_typeOfGift(int giftChosen) {
+		this._typeOfGift = giftChosen;
+	}
+	
+	public int get_typeOfGift() {
+		return _typeOfGift;
+	}
+
 }
 
