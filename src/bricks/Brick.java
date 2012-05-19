@@ -92,6 +92,7 @@ public class Brick extends JPanel{
 				Game.get_listOfBall().getLast().startBallTimer();
 				game.Interface.displayNbBalls(Game.get_listOfBall().size());
 			break;
+			
 		/*random speed*/
 		case 1:
 			int speedModificator;
@@ -103,18 +104,33 @@ public class Brick extends JPanel{
 				Game.get_listOfBall().get(i).set_timeToWait(Game.get_listOfBall().get(i).get_timeToWait() + speedModificator);
 			}
 			break;
+			
 		/*ball = bombe*/
 		case 2:
 			break;
+			
 		/*immobilisation of palet for a little moment*/
 		case 3:
 			break;
+			
 		/*modification palet size (bigger)*/
 		case 4:
+			if (Game.get_palet().get_width() < 200)
+			{
+				Game.get_palet().set_width(Game.get_palet().get_width()*2);
+				this.setBounds(_positionX, _positionY, _width, _height);
+			}
 			break;
+			
 		/*modification palet size (smaller)*/
 		case 5:
-			break;
+			if (Game.get_palet().get_width() > 50)
+			{
+				Game.get_palet().set_width(Game.get_palet().get_width()/2);
+				this.setBounds(_positionX, _positionY, _width, _height);
+			}
+				break;
+				
 		/*Ball size modification?*/
 		}
 	}
