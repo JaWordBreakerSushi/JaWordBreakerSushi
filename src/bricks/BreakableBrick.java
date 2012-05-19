@@ -2,6 +2,7 @@ package bricks;
 
 import javax.swing.JPanel;
 
+import game.Ball;
 import game.Game;
 
 public class BreakableBrick extends Brick{

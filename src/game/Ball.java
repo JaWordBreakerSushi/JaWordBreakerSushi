@@ -22,7 +22,7 @@ public class Ball extends JPanel {
 	/*to implement?*/
 	private double _friction = 0.1;
 	private JPanel _gameArea;
-	private int _timeToWait = 30;
+	private int _timeToWait = 20;
 	
 	public Ball(JPanel gameArea) {
 	_gameArea = gameArea;
@@ -30,7 +30,6 @@ public class Ball extends JPanel {
 		JLabel img = new JLabel(imgIcon);
 		_width = imgIcon.getIconWidth();
 		_height = imgIcon.getIconHeight();
-		System.out.println("TAILLE" + _width + ";" + _height);
 		this.add(img);
 	}
 
@@ -63,23 +62,34 @@ public class Ball extends JPanel {
 			//System.out.println ("FAIL");
 			_dX = 0;
 			_dY = 0;
-			//this.setVisible(false);
+			this.display(-100, -100);
+			this.setVisible(false);
 			/*TEST POUR SAVOIR SI NOUVELLE BILLE (VIE?)*/
+			if (Game.get_listOfBall().size() > 1)
+			{
+				//Launch a new ball
+				Game.get_listOfBall().getLast().display(Game.get_width()/2 - (Game.get_listOfBall().get(0).get_width()/2), Game.get_palet().getPositionY() - Game.get_listOfBall().get(0).get_height());
+				Game.get_listOfBall().removeFirst();
+			}
+			else
+			{
+				System.out.println("PERDU!");
+			}
 		}
-		//System.out.println(Game.get_palet().get_width());
-		//System.out.println("1/8 : "+(Game.get_palet().get_width()*20/100));
-		//System.out.println("7/8 : "+(Game.get_palet().get_width()*80/100));
+
 		if (this._positionX >= Game.get_palet().getPositionX() - this._width &&
 				this._positionX <= Game.get_palet().getPositionX() + Game.get_palet().get_width() &&
 				this._positionY >= Game.get_palet().getPositionY() - this._height &&
 				this._positionY <= Game.get_palet().getPositionY() + Game.get_palet().get_height()
 				)
 		{
+			
+			//Depends on the point of the collision (middle or border)
 			///keep speed
 			if (this._positionX >= Game.get_palet().getPositionX() + (Game.get_palet().get_width()*30/100) &&
 					this._positionX <= Game.get_palet().getPositionX() + (Game.get_palet().get_width()*70/100))
 			{
-				System.out.println("MILIEU");
+				//System.out.println("MILIEU");
 				double tps = _dY;
 				_dY = - _dX;
 				_dX = tps;
@@ -89,7 +99,7 @@ public class Ball extends JPanel {
 			{
 				double tps = _dY;
 				_dY = - _dX;
-				_dX = -tps;
+				_dX = tps;
 				_timeToWait --;
 			}
 			
@@ -104,32 +114,44 @@ public class Ball extends JPanel {
 					this._positionY <= Game.get_listOfBrick().get(i).getPositionY() + Game.get_listOfBrick().get(i).get_height()
 					)
 			{
+				Game.set_score(Game.get_score() + 10);
+				
 				/*90° angle*/
 				double tps = _dY;
 				_dY = - _dX;
 				_dX = tps;
-				
 				_timeToWait ++;
 				
 				TypeOfGift type;
 				type = Game.get_listOfBrick().get(i).get_gift();
+				
 				//In function of brick's type
 				switch(type)
 				{
-				/*_listOfBall.add(new Ball(gameArea));
-		_listOfBall.get(0).display(this._width/2 - (_listOfBall.get(0).get_width()/2), _palet.getPositionY() - _listOfBall.get(0).get_height());*/
 					case BALL : /*Launch a new ball (+)*/
+								System.out.println("BALL!!");
 								Game.get_listOfBall().add(new Ball(Game.get_gameArea()));
-								Game.get_listOfBall().getLast().display(Game.get_width()/2 - (Game.get_listOfBall().get(0).get_width()/2), Game.get_palet().getPositionY() - Game.get_listOfBall().get(0).get_height());
 								Game.get_listOfBrick().get(i).hide();
 								break;
 					case FIXE : 
 								break;
 					case MOVABLE :
 						
-						/*Text Collision*/
-								Game.get_listOfBrick().get(i).display(Game.get_listOfBrick().get(i).getPositionX() + (int)_dX, Game.get_listOfBrick().get(i).getPositionY() + (int)_dY);
+						//NOT WORKING WELL
+//								Game.get_listOfBrick().get(i).display(Game.get_listOfBrick().get(i).getPositionX() + 5*(int)_dX, Game.get_listOfBrick().get(i).getPositionY() + 5*(int)_dY);
+//								/*Test Collision*/
+//								if (Game.get_listOfBrick().get(i).isInCollisionWith() == 1)
+//								{
+//									Game.get_listOfBrick().get(i).display(Game.get_listOfBrick().get(i).getPositionX() - 10*(int)_dX, Game.get_listOfBrick().get(i).getPositionY() - 10*(int)_dY);
+//								}		
 								break;
+					case BONUS : Game.set_score(Game.get_score() + 50);
+								Game.get_listOfBrick().get(i).hide();
+								break;
+					case LETTER : System.out.println(Game.get_listOfBrick().get(i).get_letter());
+								Game.get_listOfBrick().get(i).hide();
+								break;			
+								
 					default : Game.get_listOfBrick().get(i).hide();
 								break;
 						

@@ -15,13 +15,15 @@ public class Game {
 	private static int _width = 520;
 	private static int _height = 480;
 	
+	/*About payer*/
+	private static int _score = 0;
 	
 	/*Readed on scores dictionnary*/
 	private ArrayList<String> _listOfWords = new ArrayList<String>();
 	private LinkedList<Integer> _listOfScores = new LinkedList<Integer>();
 
 	/*FAIRE UNE Intern class?*/
-	private String _selectedWord;
+	private static String _selectedWord;
 	private int _levelNumber;
 	private static LinkedList<Brick> _listOfBrick = new LinkedList<Brick>();
 	private static LinkedList<Ball> _listOfBall = new LinkedList<Ball>();
@@ -63,11 +65,18 @@ public class Game {
 		_listOfBall.get(0).display(this._width/2 - (_listOfBall.get(0).get_width()/2), _palet.getPositionY() - _listOfBall.get(0).get_height());
 		
 		/*Depends of levelNumber*/
-		_selectedWord = "TEST";		
+		_selectedWord = "TEST";
 		
 		/*letter's Bricks*/
+		char letter;
 		for(int i = 0; i < _levelNumber+3; i++) {
-			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.LETTER));
+			letter = _selectedWord.charAt(i);
+			_listOfBrick.add(new LetterBrick(gameArea, TypeOfGift.LETTER, letter));
+		}
+		
+		/*ball's Bricks*/
+		for(int i = 0; i < _levelNumber; i++) {
+			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.BALL));
 		}
 		
 		/*bonus' Bricks*/
@@ -89,9 +98,8 @@ public class Game {
 			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.TEMPORAL));
 		}
 		
-		
 		/*fixe's Bricks*/
-		for(int i = 0; i < _levelNumber+8; i++) {
+		for(int i = 0; i < _levelNumber+4; i++) {
 			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.FIXE));
 		}	
 			
@@ -132,7 +140,8 @@ public class Game {
 			}
 			while (!justPosisionnedABrick);
 		}
-		_listOfBall.get(0).startBallTimer();
+		
+		//_listOfBall.get(0).startBallTimer();
 	}
 
 	/*Getters and Setters*/
@@ -141,6 +150,14 @@ public class Game {
 		return _gameArea;
 	}
 	
+	public static String get_selectedWord() {
+		return _selectedWord;
+	}
+
+	public void set_selectedWord(String selectedWord) {
+		_selectedWord = selectedWord;
+	}
+
 	public static LinkedList<Brick> get_listOfBrick() {
 		return _listOfBrick;
 	}
@@ -179,5 +196,13 @@ public class Game {
 
 	public void set_height(int height) {
 		_height = height;
+	}
+
+	public static int get_score() {
+		return _score;
+	}
+
+	public static void set_score(int score) {
+		_score = score;
 	}	
 }

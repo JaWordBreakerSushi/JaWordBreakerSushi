@@ -17,6 +17,7 @@ public class Brick extends JPanel{
 	private JPanel _gameArea;
 	private boolean _isPositionned;
 	private TypeOfGift _gift;
+	private char letter;
 	
 	/*Constructor*/
 	public Brick(JPanel gameArea, TypeOfGift gift/*String url*/) {
@@ -61,6 +62,24 @@ public class Brick extends JPanel{
 		this.setBounds(_positionX, _positionY, _width, _height);
 		//this.setVisible(false);
 	}
+	
+	public int isInCollisionWith()
+	{
+		for (int i = 0; i < Game.get_listOfBrick().size(); ++i)
+		{
+			if (Game.get_listOfBrick().get(i) != this)
+			{
+				if (Math.abs(Game.get_listOfBrick().get(i).getPositionX() - this._positionX) <= Game.get_listOfBrick().get(i).get_width())
+				{
+					System.out.println("chevauche" + Math.abs(Game.get_listOfBrick().get(i).getPositionX() - this._positionX));
+				}
+			}
+		}
+		/*Colision*/
+		return 1;
+	}
+	
+	/*Getters and Setters*/
 
 	public int getPositionY() {
 		return _positionY;
@@ -105,5 +124,12 @@ public class Brick extends JPanel{
 		_gift = gift;
 	}
 
-	
+	public void set_letter(char letter) {
+		this.letter = letter;
+	}
+
+	public char get_letter() {
+		return letter;
+	}
 }
+

@@ -182,11 +182,20 @@ public class Interface extends JFrame {
         
         KeyListener keyListener = new KeyListener() {
             public void keyPressed(KeyEvent keyEvent) {
+            	//System.out.println(keyEvent.getKeyCode());
               if(KeyEvent.getKeyText(keyEvent.getKeyCode()) == "Espace"){
             	  JFrame popupWindow = popup.get_popupWindow();
             	  if(!popupWindow.isVisible()){
 	            	  popupWindow.setVisible(true);
 	            	  popupWindow.setLocationRelativeTo(null);
+            	  }
+              }
+              //Enter
+              if (keyEvent.getKeyCode() == 10)
+              {
+            	  if (_gameData.get_listOfBall().size() > 0)
+            	  {
+            		  _gameData.get_listOfBall().getFirst().startBallTimer();
             	  }
               }
             }
