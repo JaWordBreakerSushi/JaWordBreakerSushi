@@ -24,13 +24,16 @@ public class Game {
 	private String _selectedWord;
 	private int _levelNumber;
 	private static LinkedList<Brick> _listOfBrick = new LinkedList<Brick>();
-	private LinkedList<Ball> _listOfBall = new LinkedList<Ball>();
+	private static LinkedList<Ball> _listOfBall = new LinkedList<Ball>();
 	private static PaletBrick _palet;
 	public boolean _start = false;
+	private static JPanel _gameArea;
 	/**/
 	
 	
 	public Game(JPanel gameArea) {
+		
+		_gameArea = gameArea;
 		
 		/*Create the main window*/
 		
@@ -134,12 +137,24 @@ public class Game {
 
 	/*Getters and Setters*/
 	
+	public static JPanel get_gameArea() {
+		return _gameArea;
+	}
+	
 	public static LinkedList<Brick> get_listOfBrick() {
 		return _listOfBrick;
 	}
 
 	public void set_listOfBrick(LinkedList<Brick> listOfBrick) {
 		_listOfBrick = listOfBrick;
+	}
+
+	public static LinkedList<Ball> get_listOfBall() {
+		return _listOfBall;
+	}
+
+	public void set_listOfBall(LinkedList<Ball> listOfBall) {
+		_listOfBall = listOfBall;
 	}
 
 	public static PaletBrick get_palet() {

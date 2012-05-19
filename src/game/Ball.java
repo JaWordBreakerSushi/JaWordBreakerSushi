@@ -80,16 +80,19 @@ public class Ball extends JPanel {
 					this._positionX <= Game.get_palet().getPositionX() + (Game.get_palet().get_width()*70/100))
 			{
 				System.out.println("MILIEU");
-				
+				double tps = _dY;
+				_dY = - _dX;
+				_dX = tps;
 			}
 			//speed ++
 			else
 			{
+				double tps = _dY;
+				_dY = - _dX;
+				_dX = -tps;
 				_timeToWait --;
 			}
-			double tps = _dY;
-			_dY = - _dX;
-			_dX = tps;
+			
 		}
 		
 		/*test bricks collision*/
@@ -113,10 +116,33 @@ public class Ball extends JPanel {
 				//In function of brick's type
 				switch(type)
 				{
-					case FIXE : ;
-					case MOVABLE : /*bouger en fonction du déplacement de la bille*/;
+				/*_listOfBall.add(new Ball(gameArea));
+		_listOfBall.get(0).display(this._width/2 - (_listOfBall.get(0).get_width()/2), _palet.getPositionY() - _listOfBall.get(0).get_height());*/
+					case BALL : /*Launch a new ball (+)*/
+								Game.get_listOfBall().add(new Ball(Game.get_gameArea()));
+								Game.get_listOfBall().getLast().display(Game.get_width()/2 - (Game.get_listOfBall().get(0).get_width()/2), Game.get_palet().getPositionY() - Game.get_listOfBall().get(0).get_height());
+								Game.get_listOfBrick().get(i).hide();
+								break;
+					case FIXE : 
+								break;
+					case MOVABLE :
+						
+						/*Text Collision*/
+								Game.get_listOfBrick().get(i).display(Game.get_listOfBrick().get(i).getPositionX() + (int)_dX, Game.get_listOfBrick().get(i).getPositionY() + (int)_dY);
+								break;
 					default : Game.get_listOfBrick().get(i).hide();
-						;
+								break;
+						
+						/*
+	BALL		("./src/img/bille.png"),
+	LETTER		("./src/img/maki.png"),
+	BONUS		("./src/img/fortune_cookies.png"),
+	MAGIC		("./src/img/sushi.png"),
+	TEMPORAL	("./src/img/onigiri.png"),
+	FIXE		("./src/img/miso_fixe.png"),
+	MOVABLE		("./src/img/miso_movable.png"),
+	PALET		("./src/img/palet.png");
+						 * */
 				}
 				
 			}
