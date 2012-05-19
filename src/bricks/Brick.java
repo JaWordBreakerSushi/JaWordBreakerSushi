@@ -59,8 +59,6 @@ public class Brick extends JPanel{
 	public void hide () {
 		_width = 0;
 		_height = 0;
-		_positionX = -10;
-		_positionY = -10;
 		this.setBounds(_positionX, _positionY, _width, _height);
 		//this.setVisible(false);
 	}
@@ -81,8 +79,7 @@ public class Brick extends JPanel{
 		return 1;
 	}
 	
-	public void applicationOfGift() {
-		System.out.println("CAS : " + _typeOfGift);
+	public void applicationOfGift() throws InterruptedException {
 		switch(_typeOfGift)
 		{
 		/* ++ ball(s)*/
@@ -111,6 +108,7 @@ public class Brick extends JPanel{
 			
 		/*immobilisation of palet for a little moment*/
 		case 3:
+			;
 			break;
 			
 		/*modification palet size (bigger)*/

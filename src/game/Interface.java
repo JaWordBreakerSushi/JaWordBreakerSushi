@@ -222,6 +222,10 @@ public class Interface extends JFrame {
             		  _gameData.get_listOfBall().getFirst().startBallTimer();
             	  }
               }
+              //a
+              if(keyEvent.getKeyCode() == 65)
+              {
+              }
             }
 
             public void keyReleased(KeyEvent keyEvent) {}
@@ -400,7 +404,7 @@ public class Interface extends JFrame {
 	/*Getters and Setters*/
 
 	public static void displayLetter(char letter) {
-      _letters.setText(_letters.getText() + "  " + letter);
+      _letters.setText(_letters.getText() + "  \n" + letter);
 	}
 	
 	public static void displayNbBalls(int nb) {
@@ -410,17 +414,5 @@ public class Interface extends JFrame {
 	
 	public static void displayScore(int score) {
 		_score.setText("Score : " + score);
-	}
-
-//	public static JLabel get_scoreDisplayed() {
-//		return _score;
-//	}
-//
-//	public static void set_scoreDisplayed(int score) {
-//		//_score.setText("Score : "+ score);
-//		System.out.println("UPDATE");
-//	}
-	
-	
-	
+	}	
 }

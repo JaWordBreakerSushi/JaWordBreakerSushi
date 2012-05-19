@@ -19,8 +19,6 @@ public class Ball extends JPanel {
 	private int _width;
 	private int _height;
 	private float _masse = 0;
-	/*to implement?*/
-	private double _friction = 0.1;
 	private JPanel _gameArea;
 	private int _timeToWait = 30;
 	
@@ -59,7 +57,6 @@ public class Ball extends JPanel {
 		
 		if (this._positionY >= Game.get_height() - this._height)
 		{
-			//System.out.println ("FAIL");
 			_dX = 0;
 			_dY = 0;
 			this.display(-100, -100);
@@ -162,7 +159,11 @@ public class Ball extends JPanel {
 								Game.get_listOfBrick().get(i).hide();
 								Game.set_score(Game.get_score() + 10);
 								break;
-					case MAGIC :Game.get_listOfBrick().get(i).applicationOfGift();
+					case MAGIC :try {
+						Game.get_listOfBrick().get(i).applicationOfGift();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 								Game.get_listOfBrick().get(i).hide();
 								break;
 								

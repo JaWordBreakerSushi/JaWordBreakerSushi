@@ -13,8 +13,7 @@ public class BreakableBrick extends Brick{
 		super(gameArea, gift/*.getUrl()*/);
 		
 		/*choice of gift*/
-		int giftChosen = (int)(Math.random() * (6 -0) - 0) + 0*//*FOR TEST*//*0*/;
-		System.out.println(giftChosen);
+		int giftChosen = (int)(Math.random() * (6 -0) - 0) + 0;
 		_typeOfGift = giftChosen;
 		super.set_typeOfGift(giftChosen);
 	}
