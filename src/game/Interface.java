@@ -25,9 +25,10 @@ public class Interface extends JFrame {
 	private JPanel _gameArea;
 	private Game _gameData;
     private PopupWindow popup = new PopupWindow();
-	private Container _content = getContentPane();
+	public Container _content = getContentPane();
 	private JPanel _scoreList;
-	public static JLabel _score;
+	private static JLabel _score;
+	private static JLabel _letters;
 	private static Color jaune = new Color(255,213,91);
 	private static Color orange = new Color(253,111,15);
 	
@@ -150,13 +151,22 @@ public class Interface extends JFrame {
         name.setFont(fontName);
         name.setForeground(Color.WHITE);
         
-        JLabel _score = new JLabel();
+        /*Current Score*/
+        _score = new JLabel();
         _score.setPreferredSize(new Dimension(180, 25));
         _score.setHorizontalAlignment(JLabel.LEFT);
         _score.setFont(fontScore);
         _score.setForeground(Color.WHITE);
         _score.setText("Score : " + _gameData.get_score());
-                
+        
+        /*Known letters*/
+        _letters = new JLabel();
+        _letters.setPreferredSize(new Dimension(180, 25));
+        _letters.setHorizontalAlignment(JLabel.LEFT);
+        _letters.setFont(fontScore);
+        _letters.setForeground(Color.WHITE);
+        _letters.setText("Letters :");        
+        
         borderTop.setBorder(new EmptyBorder(-5, -5, -5, -5) );
         borderLeft.setBorder(new EmptyBorder(-5, -5, -5, -5) );
         borderRight.setBorder(new EmptyBorder(-5, -5, -5, -5) );
@@ -180,6 +190,7 @@ public class Interface extends JFrame {
         _content.add(gamePanel);
         menu.add(name);
         menu.add(_score);
+        menu.add(_letters);
 
         _content.add(menu);
         
@@ -369,6 +380,14 @@ public class Interface extends JFrame {
 		dataIn.close();
 	}	
 	/*Getters and Setters*/
+
+	public static void displayLetter(char letter) {
+      _letters.setText(_letters.getText() + "  " + letter);
+	}
+	
+	public static void displayScore(int score) {
+		_score.setText("Score : " + score);
+	}
 
 //	public static JLabel get_scoreDisplayed() {
 //		return _score;

@@ -85,7 +85,7 @@ public class Ball extends JPanel {
 		{
 			
 			//Depends on the point of the collision (middle or border)
-			///keep speed
+			///palet's middle
 			if (this._positionX >= Game.get_palet().getPositionX() + (Game.get_palet().get_width()*30/100) &&
 					this._positionX <= Game.get_palet().getPositionX() + (Game.get_palet().get_width()*70/100))
 			{
@@ -93,6 +93,7 @@ public class Ball extends JPanel {
 				double tps = _dY;
 				_dY = - _dX;
 				_dX = tps;
+				_timeToWait --;
 			}
 			//speed ++
 			else
@@ -100,7 +101,7 @@ public class Ball extends JPanel {
 				double tps = _dY;
 				_dY = - _dX;
 				_dX = tps;
-				_timeToWait --;
+				_timeToWait -= 2;
 			}
 			
 		}
@@ -116,7 +117,7 @@ public class Ball extends JPanel {
 			{
 				Game.set_score(Game.get_score() + 10);
 				//NULL PTEUR EXCEPTION :s
-//				game.Interface._score.setText("AA");
+				game.Interface.displayScore(Game.get_score());
 				
 				/*90° angle*/
 				double tps = _dY;
@@ -150,7 +151,9 @@ public class Ball extends JPanel {
 					case BONUS : Game.set_score(Game.get_score() + 50);
 								Game.get_listOfBrick().get(i).hide();
 								break;
-					case LETTER : System.out.println(Game.get_listOfBrick().get(i).get_letter());
+					case LETTER :
+								/*Display letter*/
+								game.Interface.displayLetter(Game.get_listOfBrick().get(i).get_letter());
 								Game.get_listOfBrick().get(i).hide();
 								break;			
 								
