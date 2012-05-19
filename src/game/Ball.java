@@ -74,8 +74,11 @@ public class Ball extends JPanel {
 					)
 			{
 				//System.out.println ("TOUCHE");
-				_dY = - _dY;
-				_dX = - _dX;
+				/*90° angle*/
+				System.out.println(_dX + ";" + _dY);
+				double tps = _dY;
+				_dY = - _dX;
+				_dX = tps;
 				
 				TypeOfGift type;
 				type = Game.get_listOfBrick().get(i).get_gift();
