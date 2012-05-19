@@ -55,13 +55,26 @@ public class Ball extends JPanel {
 		{
 			_dY = - _dY;
 		}
-		//TEMPORAIRE!!!
-		if (_positionY >= game.Game.get_height() - this._height)
+		
+		if (this._positionY >= Game.get_height() - this._height)
 		{
-			//System.out.println("OUI");//?? ne se stoppe pas ??
-			//_dY = 0;
-			//_dX = 0;
-			_dY = - _dY;
+			System.out.println ("FAIL");
+			_dX = 0;
+			_dY = 0;
+			//this.setVisible(false);
+			/*TEST POUR SAVOIR SI NOUVELLE BILLE (VIE?)*/
+		}
+		
+		if (this._positionX >= Game.get_palet().getPositionX() - this._width &&
+				this._positionX <= Game.get_palet().getPositionX() + Game.get_palet().get_width() &&
+				this._positionY >= Game.get_palet().getPositionY() - this._height &&
+				this._positionY <= Game.get_palet().getPositionY() + Game.get_palet().get_height()
+				)
+		{
+			//System.out.println("TOUCHE");
+			double tps = _dY;
+			_dY = - _dX;
+			_dX = tps;
 		}
 		
 		/*test bricks collision*/
@@ -73,9 +86,7 @@ public class Ball extends JPanel {
 					this._positionY <= Game.get_listOfBrick().get(i).getPositionY() + Game.get_listOfBrick().get(i).get_height()
 					)
 			{
-				//System.out.println ("TOUCHE");
 				/*90° angle*/
-				System.out.println(_dX + ";" + _dY);
 				double tps = _dY;
 				_dY = - _dX;
 				_dX = tps;

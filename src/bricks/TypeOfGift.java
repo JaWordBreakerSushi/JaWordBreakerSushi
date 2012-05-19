@@ -7,7 +7,8 @@ public enum TypeOfGift {
 	MAGIC		("./src/img/sushi.png"),
 	TEMPORAL	("./src/img/onigiri.png"),
 	FIXE		("./src/img/miso_fixe.png"),
-	MOVABLE		("./src/img/miso_movable.png");
+	MOVABLE		("./src/img/miso_movable.png"),
+	PALET		("./src/img/palet.png");
 	
 private final String _url;
 	

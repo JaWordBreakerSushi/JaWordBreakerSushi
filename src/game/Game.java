@@ -25,6 +25,7 @@ public class Game {
 	private int _levelNumber;
 	private static LinkedList<Brick> _listOfBrick = new LinkedList<Brick>();
 	private LinkedList<Ball> _listOfBall = new LinkedList<Ball>();
+	private static PaletBrick _palet;
 	public boolean _start = false;
 	/**/
 	
@@ -48,12 +49,15 @@ public class Game {
 	public void prepareLevel(JPanel gameArea){
 		//System.out.println("AAAAAA");
 		
+		/*palet's Brick (just ONE)*/
+		_palet = new PaletBrick(gameArea, TypeOfGift.PALET);
+		/*init size*/
+		_palet.set_width(_palet.get_width() / 2);
+		_palet.display(this._width/2 - _palet.get_width()/2, this._height - _palet.get_height());
+		
 		/*Ball to start*/
 		_listOfBall.add(new Ball(gameArea));
-		_listOfBall.get(0).display(this._width/2 - (_listOfBall.get(0).get_width()/2), this._height - _listOfBall.get(0).get_height());
-		
-		/*palet's Brick (just ONE)*/
-		//NOoooooooON//_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.LETTER));
+		_listOfBall.get(0).display(this._width/2 - (_listOfBall.get(0).get_width()/2), _palet.getPositionY() - _listOfBall.get(0).get_height());
 		
 		/*Depends of levelNumber*/
 		_selectedWord = "TEST";		
@@ -136,6 +140,14 @@ public class Game {
 
 	public void set_listOfBrick(LinkedList<Brick> listOfBrick) {
 		_listOfBrick = listOfBrick;
+	}
+
+	public static PaletBrick get_palet() {
+		return _palet;
+	}
+
+	public void set_palet(PaletBrick palet) {
+		_palet = palet;
 	}
 
 	public static int get_width() {

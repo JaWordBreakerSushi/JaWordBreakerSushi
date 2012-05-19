@@ -197,6 +197,34 @@ public class Interface extends JFrame {
         };
         
         _content.addKeyListener(keyListener);
+        
+        KeyListener keyListenerFleche = new KeyListener()
+		{
+	        public void keyPressed(KeyEvent keyEvent)
+	        {
+	        	System.out.println("PRESSED");
+	        	if (keyEvent.getKeyCode() == 39)
+	        	{
+	        		System.out.println("DROITE");
+	        		//_gameData.get_palet().setPositionX(_gameData.get_palet().getPositionX() +2);
+	        		_gameData.get_palet().display(_gameData.get_palet().getPositionX() +6, _gameData.get_palet().getPositionY());
+	        	}
+	        	if (keyEvent.getKeyCode() == 37)
+	        	{
+	        		System.out.println("GAUCHE");
+	        		_gameData.get_palet().display(_gameData.get_palet().getPositionX() -6, _gameData.get_palet().getPositionY());
+	        	}
+	        }
+
+	        public void keyReleased(KeyEvent keyEvent) {}
+	        public void keyTyped(KeyEvent keyEvent) {}
+
+	    };
+	    _content.addKeyListener(keyListenerFleche);
+        
+        
+        
+        
         this.setContentPane(_content);
         this.setVisible(true);
 	}

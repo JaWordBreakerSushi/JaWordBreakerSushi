@@ -77,6 +77,14 @@ public class Brick extends JPanel{
 		return _height;
 	}
 
+	public void set_width(int width) {
+		_width = width;
+	}
+
+	public void set_height(int height) {
+		_height = height;
+	}
+
 	public boolean is_isPositionned() {
 		return _isPositionned;
 	}
