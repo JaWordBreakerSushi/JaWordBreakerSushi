@@ -70,10 +70,12 @@ public class Ball extends JPanel {
 				//Launch a new ball
 				Game.get_listOfBall().getLast().display(Game.get_width()/2 - (Game.get_listOfBall().get(0).get_width()/2), Game.get_palet().getPositionY() - Game.get_listOfBall().get(0).get_height());
 				Game.get_listOfBall().removeFirst();
+				game.Interface.displayNbBalls(Game.get_listOfBall().size());
 			}
 			else
 			{
 				System.out.println("PERDU!");
+				game.Interface.displayNbBalls(Game.get_listOfBall().size());
 			}
 		}
 
@@ -134,6 +136,7 @@ public class Ball extends JPanel {
 					case BALL : /*Launch a new ball (+)*/
 								System.out.println("BALL!!");
 								Game.get_listOfBall().add(new Ball(Game.get_gameArea()));
+								game.Interface.displayNbBalls(Game.get_listOfBall().size());
 								Game.get_listOfBrick().get(i).hide();
 								break;
 					case FIXE : 

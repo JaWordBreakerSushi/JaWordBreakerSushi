@@ -29,6 +29,7 @@ public class Interface extends JFrame {
 	private JPanel _scoreList;
 	private static JLabel _score;
 	private static JLabel _letters;
+	private static JLabel _nbBalls;
 	private static Color jaune = new Color(255,213,91);
 	private static Color orange = new Color(253,111,15);
 	
@@ -103,7 +104,7 @@ public class Interface extends JFrame {
             public void actionPerformed(ActionEvent e)
             {
                 //Execute when button is pressed
-            	_content.removeAll();  
+            	_content.removeAll();
             	highScoresInterface();
             }
         }); 
@@ -159,6 +160,14 @@ public class Interface extends JFrame {
         _score.setForeground(Color.WHITE);
         _score.setText("Score : " + _gameData.get_score());
         
+        /*Current number of balls*/
+        _nbBalls = new JLabel();
+        _nbBalls.setPreferredSize(new Dimension(180, 25));
+        _nbBalls.setHorizontalAlignment(JLabel.LEFT);
+        _nbBalls.setFont(fontScore);
+        _nbBalls.setForeground(Color.WHITE);
+        _nbBalls.setText("Ball : 0");
+        
         /*Known letters*/
         _letters = new JLabel();
         _letters.setPreferredSize(new Dimension(180, 25));
@@ -190,6 +199,7 @@ public class Interface extends JFrame {
         _content.add(gamePanel);
         menu.add(name);
         menu.add(_score);
+        menu.add(_nbBalls);
         menu.add(_letters);
 
         _content.add(menu);
@@ -384,6 +394,11 @@ public class Interface extends JFrame {
 	public static void displayLetter(char letter) {
       _letters.setText(_letters.getText() + "  " + letter);
 	}
+	
+	public static void displayNbBalls(int nb) {
+		/*nb without the current ball*/
+	      _nbBalls.setText("Ball : " + (nb-1));
+		}
 	
 	public static void displayScore(int score) {
 		_score.setText("Score : " + score);
