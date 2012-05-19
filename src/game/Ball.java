@@ -115,6 +115,8 @@ public class Ball extends JPanel {
 					)
 			{
 				Game.set_score(Game.get_score() + 10);
+				//NULL PTEUR EXCEPTION :s
+//				game.Interface._score.setText("AA");
 				
 				/*90° angle*/
 				double tps = _dY;

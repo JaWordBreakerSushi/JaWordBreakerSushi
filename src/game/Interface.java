@@ -27,6 +27,7 @@ public class Interface extends JFrame {
     private PopupWindow popup = new PopupWindow();
 	private Container _content = getContentPane();
 	private JPanel _scoreList;
+	public static JLabel _score;
 	private static Color jaune = new Color(255,213,91);
 	private static Color orange = new Color(253,111,15);
 	
@@ -140,6 +141,7 @@ public class Interface extends JFrame {
         
         ImagePanel menu = new ImagePanel("./src/img/background_menu.jpg");
         
+        /*Display in right panel*/
         Font fontName = new Font("Arial", Font.BOLD, 18);
         Font fontScore = new Font("Arial", Font.BOLD, 15);
         JLabel name = new JLabel("Amethyste");
@@ -148,12 +150,13 @@ public class Interface extends JFrame {
         name.setFont(fontName);
         name.setForeground(Color.WHITE);
         
-        JLabel score = new JLabel("Score : ");
-        score.setPreferredSize(new Dimension(180, 25));
-        score.setHorizontalAlignment(JLabel.LEFT);
-        score.setFont(fontScore);
-        score.setForeground(Color.WHITE);
-        
+        JLabel _score = new JLabel();
+        _score.setPreferredSize(new Dimension(180, 25));
+        _score.setHorizontalAlignment(JLabel.LEFT);
+        _score.setFont(fontScore);
+        _score.setForeground(Color.WHITE);
+        _score.setText("Score : " + _gameData.get_score());
+                
         borderTop.setBorder(new EmptyBorder(-5, -5, -5, -5) );
         borderLeft.setBorder(new EmptyBorder(-5, -5, -5, -5) );
         borderRight.setBorder(new EmptyBorder(-5, -5, -5, -5) );
@@ -176,7 +179,7 @@ public class Interface extends JFrame {
         gamePanel.add(_gameArea, BorderLayout.CENTER);
         _content.add(gamePanel);
         menu.add(name);
-        menu.add(score);
+        menu.add(_score);
 
         _content.add(menu);
         
@@ -364,6 +367,18 @@ public class Interface extends JFrame {
 			}
 		}
 		dataIn.close();
-	}
+	}	
+	/*Getters and Setters*/
+
+//	public static JLabel get_scoreDisplayed() {
+//		return _score;
+//	}
+//
+//	public static void set_scoreDisplayed(int score) {
+//		//_score.setText("Score : "+ score);
+//		System.out.println("UPDATE");
+//	}
+	
+	
 	
 }
