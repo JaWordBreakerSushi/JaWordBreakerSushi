@@ -117,8 +117,6 @@ public class Ball extends JPanel {
 					this._positionY <= Game.get_listOfBrick().get(i).getPositionY() + Game.get_listOfBrick().get(i).get_height()
 					)
 			{
-				Game.set_score(Game.get_score() + 10);
-				//NULL PTEUR EXCEPTION :s
 				game.Interface.displayScore(Game.get_score());
 				
 				/*90° angle*/
@@ -138,6 +136,7 @@ public class Ball extends JPanel {
 								Game.get_listOfBall().add(new Ball(Game.get_gameArea()));
 								game.Interface.displayNbBalls(Game.get_listOfBall().size());
 								Game.get_listOfBrick().get(i).hide();
+								Game.set_score(Game.get_score() + 10);
 								break;
 					case FIXE : 
 								break;
@@ -153,11 +152,13 @@ public class Ball extends JPanel {
 								break;
 					case BONUS : Game.set_score(Game.get_score() + 50);
 								Game.get_listOfBrick().get(i).hide();
+								Game.set_score(Game.get_score() + 10);
 								break;
 					case LETTER :
 								/*Display letter*/
 								game.Interface.displayLetter(Game.get_listOfBrick().get(i).get_letter());
 								Game.get_listOfBrick().get(i).hide();
+								Game.set_score(Game.get_score() + 10);
 								break;			
 								
 					default : Game.get_listOfBrick().get(i).hide();

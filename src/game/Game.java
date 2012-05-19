@@ -100,12 +100,12 @@ public class Game {
 		
 		/*fixe's Bricks*/
 		for(int i = 0; i < _levelNumber+4; i++) {
-			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.FIXE));
+			_listOfBrick.add(new UnBreakableBrick(gameArea, TypeOfGift.FIXE));
 		}	
 			
 		/*movable's Bricks*/
 		for(int i = 0; i < _levelNumber+4; i++) {
-			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.MOVABLE));
+			_listOfBrick.add(new UnBreakableBrick(gameArea, TypeOfGift.MOVABLE));
 		}
 		
 		/*place bricks*/

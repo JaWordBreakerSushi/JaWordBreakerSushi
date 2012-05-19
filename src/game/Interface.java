@@ -237,11 +237,19 @@ public class Interface extends JFrame {
 	        {
 	        	if (keyEvent.getKeyCode() == 39)
 	        	{
-	        		_gameData.get_palet().display(_gameData.get_palet().getPositionX() +6, _gameData.get_palet().getPositionY());
+	        		//right
+	        		if( _gameData.get_palet().getPositionX() < _gameData.get_width() - _gameData.get_palet().get_width())
+	        		{
+	        			_gameData.get_palet().display(_gameData.get_palet().getPositionX() +6, _gameData.get_palet().getPositionY());
+	        		}
 	        	}
 	        	if (keyEvent.getKeyCode() == 37)
 	        	{
-	        		_gameData.get_palet().display(_gameData.get_palet().getPositionX() -6, _gameData.get_palet().getPositionY());
+	        		//left
+	        		if( _gameData.get_palet().getPositionX() > 0)
+	        		{
+	        			_gameData.get_palet().display(_gameData.get_palet().getPositionX() -6, _gameData.get_palet().getPositionY());
+	        		}
 	        	}
 	        }
 
