@@ -40,16 +40,9 @@ public class Interface extends JFrame {
     
     public static void main(String[] args){
 
-    	//AudioSound as = new AudioSound();
     }
 
     public Interface(){
-
-		/**URL base = applet.getClass().getResource("/welcome.wav");
-		System.out.print(base);*/
-		// load sounds and set currentSound
-		//sound = applet.getAudioClip(base, "welcome.wav");
-		//sound.play();
 		
 		try {
 			readDico();
@@ -330,6 +323,8 @@ public class Interface extends JFrame {
 
         JPanel menu = new JPanel();
         menu.setBackground(jaune);
+        menu.setLayout(new BoxLayout(menu, BoxLayout.X_AXIS));
+        menu.setPreferredSize(new Dimension(120, 250));
 
 		Font fontTitleTab = new Font("Arial", Font.BOLD, 18);
 		_scoreList = new JPanel(new GridLayout(11,3));
@@ -356,13 +351,17 @@ public class Interface extends JFrame {
 			System.out.println("IOException " + e.getMessage());
 		}
 		
-		Border thickBorder = new LineBorder(Color.BLUE, 7);
+		Border thickBorder = new LineBorder(jaune, 25);
 		Font fontScore = new Font("Arial", Font.BOLD, 18);
 
 		JButton retour = new JButton("Retour");
+		
 		retour.setFont(fontScore);
 		retour.setForeground(Color.WHITE);
-		retour.setBackground(Color.BLUE);
+		retour.setBackground(jaune);
+		retour.setAlignmentX((float)0.5);
+		retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		retour.setBorder(thickBorder);
 
 		retour.addActionListener(new ActionListener() {
 		
