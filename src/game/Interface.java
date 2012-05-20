@@ -460,7 +460,6 @@ public class Interface extends JFrame {
 	/*Getters and Setters*/
 
 	public static void displayLetter(char letter) {
-		System.out.println(letter);
 	      _letters.setText(_letters.getText() + " " + letter);
 	}
 	

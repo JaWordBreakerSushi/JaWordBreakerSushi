@@ -99,7 +99,7 @@ public class Game {
 		}
 //		int widthLargestBrick = _listOfBrick.getLast().get_width();
 //		int heightHigherBrick = _listOfBrick.getLast().get_height();
-		int widthLargestBrick = 86;
+		int widthLargestBrick = 84;
 		int heightHigherBrick = 44;
 		/*magic's' Bricks*/
 		for(int i = 0; i < _levelNumber+4; i++) {
@@ -120,9 +120,11 @@ public class Game {
 		for(int i = 0; i < _levelNumber+4; i++) {
 			_listOfBrick.add(new UnBreakableBrick(gameArea, TypeOfGift.MOVABLE));
 		}
+		System.out.println(_listOfBrick.size());
 		
 		/*place bricks*/
 		int bricksPerLine = (int)(_width/widthLargestBrick) -1;
+		System.out.println(bricksPerLine);
 		Brick brickToPlace = null;
 
 		/*ligne and col*/
