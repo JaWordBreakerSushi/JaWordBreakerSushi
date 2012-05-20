@@ -1,13 +1,13 @@
 package bricks;
 
 public enum TypeOfGift {
-	BALL		("./src/img/maki.png"),
-	LETTER		("./src/img/fortune_cookies.png"),
-	BONUS		("./src/img/maki.png"),
-	MAGIC		("./src/img/sushi.png"),
-	TEMPORAL	("./src/img/onigiri.png"),
-	FIXE		("./src/img/miso_fixe.png"),
-	MOVABLE		("./src/img/miso_mobile.png"),
+	BALL		("./src/img/maki.jpg"),
+	LETTER		("./src/img/fortune_cookies.jpg"),
+	BONUS		("./src/img/maki.jpg"),
+	MAGIC		("./src/img/sushi.jpg"),
+	TEMPORAL	("./src/img/onigiri.jpg"),
+	FIXE		("./src/img/miso_fixe.jpg"),
+	MOVABLE		("./src/img/miso_mobile.jpg"),
 	PALET		("./src/img/palet.png");
 	
 private final String _url;

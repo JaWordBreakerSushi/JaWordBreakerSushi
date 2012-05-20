@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,17 +23,18 @@ public class Ball extends JPanel {
 	
 	public Ball(JPanel gameArea) {
 		_gameArea = gameArea;
-		ImageIcon imgIcon = new ImageIcon("./src/img/bille.png");
+		ImageIcon imgIcon = new ImageIcon("./src/img/bille.jpg");
 		JLabel img = new JLabel(imgIcon);
 		_width = imgIcon.getIconWidth();
 		_height = imgIcon.getIconHeight();
+		this.setBackground(new Color(255,213,91));
 		this.add(img);
 	}
 
 	public void display(int positionX, int positionY) {
 		_positionX = positionX;
 		_positionY = positionY;
-		this.setBounds(_positionX, _positionY, _width, _height);
+		this.setBounds(_positionX, _positionY, _width, _height+5);
 		_gameArea.add(this);
 		this.setVisible(true);
 	}

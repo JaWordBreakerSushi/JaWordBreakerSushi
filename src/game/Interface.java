@@ -214,7 +214,7 @@ public class Interface extends JFrame {
 		gamePanel.setBorder(new EmptyBorder(-5, -5, -5, -5) );
 		_gameArea.setBorder(new EmptyBorder(-5, -5, -5, -5) );
 		
-		_gameArea.setBackground(new Color(247,217,129));
+		_gameArea.setBackground(jaune);
 	        
 		borderTop.add(borderTopBackground);
 		borderLeft.add(borderLeftBackground);

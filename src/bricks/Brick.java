@@ -1,11 +1,16 @@
 package bricks;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Insets;
+
 import game.Ball;
 import game.Game;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class Brick extends JPanel{
 
@@ -27,9 +32,14 @@ public class Brick extends JPanel{
 		_gift = gift;
 		ImageIcon imgIcon = new ImageIcon(gift.getUrl());
 		JLabel img = new JLabel(imgIcon);
+		
+		this.setBackground(new Color(255,213,91));
+		
 		_width = imgIcon.getIconWidth();
 		_height = imgIcon.getIconHeight();
+		
 		this.add(img);
+
 		this._isPositionned = false;
 			
 		_gameArea = gameArea;		
@@ -52,7 +62,7 @@ public class Brick extends JPanel{
 	public void display(int positionX, int positionY) {
 		_positionX = positionX;
 		_positionY = positionY;
-		this.setBounds(_positionX, _positionY, _width, _height);
+		this.setBounds(_positionX, _positionY, _width, _height+5);
 		_gameArea.add(this);
 		this.setVisible(true);
 	}
