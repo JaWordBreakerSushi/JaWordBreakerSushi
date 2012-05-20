@@ -10,15 +10,14 @@ public class PopupWindow extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JFrame popupWindow;
     private JTextField wordProposed;
-    private String _wordChosen;
+    private static String _wordChosen;
     public JLabel result;
 	private static Color orange = new Color(253,111,15);
 
     /**
      * Constructor.
      */
-    public PopupWindow(String word) {
-    	_wordChosen = word;
+    public PopupWindow() {
         init();
     }
     
@@ -108,7 +107,27 @@ public class PopupWindow extends JPanel {
         popupWindow.pack();
     }
     
+    /*Getters and setters*/
+    
     public JFrame get_popupWindow(){
     	return popupWindow;
     }
+
+	public JTextField getWordProposed() {
+		return wordProposed;
+	}
+
+	public void setWordProposed(JTextField wordProposed) {
+		this.wordProposed = wordProposed;
+	}
+
+	public static String get_wordChosen() {
+		return _wordChosen;
+	}
+
+	public static void set_wordChosen(String wordChosen) {
+		_wordChosen = wordChosen;
+	}
+    
+    
 }

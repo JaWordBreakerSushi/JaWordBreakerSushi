@@ -1,11 +1,10 @@
-import game.Game;
-import game.Interface;
 import game.MainWindow;
 
 import javax.swing.JApplet;
 
 public class Main extends JApplet{
-	
+
+	private static final long serialVersionUID = 1L;
 	private static MainWindow _gameInterface;
 	
 	

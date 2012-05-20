@@ -73,6 +73,7 @@ public class Game {
 		level n => n+2lettres*/
 		_selectedWord = game.Interface.chooseWordFromDico();
 		System.out.println("\n" + _selectedWord);
+		game.PopupWindow.set_wordChosen(_selectedWord);
 		
 		/*Ball to start*/
 		_listOfBall.add(new Ball(gameArea));

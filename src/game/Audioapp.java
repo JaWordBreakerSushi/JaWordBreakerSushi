@@ -6,6 +6,8 @@ import java.net.*;
 
 public class Audioapp extends JApplet
 {
+	private static final long serialVersionUID = 1L;
+
 	public class Sound // Holds one audio file
 	{
 	  private AudioClip song; // Sound player

@@ -26,7 +26,7 @@ public class Interface extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel _gameArea;
 	private Game _gameData;
-    private PopupWindow popup;
+    private static PopupWindow _popup;
     public Container _content = getContentPane();
     private JPanel _scoreList;
     private static JLabel _score;
@@ -143,6 +143,8 @@ public class Interface extends JFrame {
 
 	public void playingInterface(){
 		Game.set_start(true);
+		
+		_popup = new PopupWindow();
 	
 		_content.setLayout(new BoxLayout(_content, BoxLayout.X_AXIS));
 		
@@ -221,21 +223,19 @@ public class Interface extends JFrame {
 		menu.add(_letters);	
 		_content.add(menu);
 		
-		popup = new PopupWindow(Game.get_selectedWord());
-		
 		KeyListener keyListener = new KeyListener() {
 			public void keyPressed(KeyEvent keyEvent) {
 				if(KeyEvent.getKeyText(keyEvent.getKeyCode()) == "Espace"){
 					
 					
-					JFrame popupWindow = popup.get_popupWindow();
-					if(!popupWindow.isVisible()){
-						popupWindow.setVisible(true);
-						popupWindow.setLocationRelativeTo(null);
+					JFrame _popupWindow = _popup.get_popupWindow();
+					if(!_popupWindow.isVisible()){
+						_popupWindow.setVisible(true);
+						_popupWindow.setLocationRelativeTo(null);
 					}
 					else
 					{
-						popupWindow.setVisible(true);
+						_popupWindow.setVisible(true);
 					}
 					if (Game.is_start())
 						Game.set_start(false);
@@ -263,7 +263,7 @@ public class Interface extends JFrame {
 	        };
 	        
 	        _content.addKeyListener(keyListener);
-	        popup.addKeyListener(keyListener);
+	        _popup.addKeyListener(keyListener);
 	        
 	        KeyListener keyListenerFleche = new KeyListener()
 	        {
