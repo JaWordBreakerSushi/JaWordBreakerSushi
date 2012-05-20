@@ -1,16 +1,14 @@
 package game;
 
-import java.awt.Graphics;
-import java.util.LinkedList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import bricks.Brick;
 import bricks.TypeOfGift;
 
 public class Ball extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 	private int _positionX;
 	private int _positionY;
 	private double _dX = 1;
@@ -23,7 +21,7 @@ public class Ball extends JPanel {
 	private int _timeToWait = 30;
 	
 	public Ball(JPanel gameArea) {
-	_gameArea = gameArea;
+		_gameArea = gameArea;
 		ImageIcon imgIcon = new ImageIcon("./src/img/bille.png");
 		JLabel img = new JLabel(imgIcon);
 		_width = imgIcon.getIconWidth();
@@ -43,8 +41,7 @@ public class Ball extends JPanel {
 		_positionX += _dX;
 		_positionY -= _dY;
 		
-		/*test walls collision*/
-		
+		/*test walls collisions*/
 		if (_positionX <= 0 || _positionX > (game.Game.get_width() - this._width))
 		{
 			_dX = - _dX;
@@ -94,9 +91,9 @@ public class Ball extends JPanel {
 				_dX = tps;
 				_timeToWait += 2;
 			}
-			//slower
 			else
 			{
+				//slower
 				double tps = _dY;
 				_dY = - _dX;
 				_dX = tps;
@@ -131,7 +128,6 @@ public class Ball extends JPanel {
 				switch(type)
 				{
 					case BALL : /*Launch a new ball (+)*/
-								//System.out.println("BALL!!");
 								Game.get_listOfBall().add(new Ball(Game.get_gameArea()));
 								game.Interface.displayNbBalls(Game.get_listOfBall().size());
 								Game.get_listOfBrick().get(i).hide();
@@ -149,7 +145,8 @@ public class Ball extends JPanel {
 //									Game.get_listOfBrick().get(i).display(Game.get_listOfBrick().get(i).getPositionX() - 10*(int)_dX, Game.get_listOfBrick().get(i).getPositionY() - 10*(int)_dY);
 //								}		
 								break;
-					case BONUS : Game.set_score(Game.get_score() + 50);
+					case BONUS : 
+								Game.set_score(Game.get_score() + 50);
 								Game.get_listOfBrick().get(i).hide();
 								Game.set_score(Game.get_score() + 10);
 								break;
@@ -159,29 +156,19 @@ public class Ball extends JPanel {
 								Game.get_listOfBrick().get(i).hide();
 								Game.set_score(Game.get_score() + 10);
 								break;
-					case MAGIC :try {
-						Game.get_listOfBrick().get(i).applicationOfGift();
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-								Game.get_listOfBrick().get(i).hide();
+					case MAGIC :
+								try {
+									Game.get_listOfBrick().get(i).applicationOfGift();
+								}
+								catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+									Game.get_listOfBrick().get(i).hide();
 								break;
 								
 					default : Game.get_listOfBrick().get(i).hide();
 								break;
-						
-						/*
-	BALL		("./src/img/bille.png"),
-	LETTER		("./src/img/maki.png"),
-	BONUS		("./src/img/fortune_cookies.png"),
-	MAGIC		("./src/img/sushi.png"),
-	TEMPORAL	("./src/img/onigiri.png"),
-	FIXE		("./src/img/miso_fixe.png"),
-	MOVABLE		("./src/img/miso_movable.png"),
-	PALET		("./src/img/palet.png");
-						 * */
-				}
-				
+				}	
 			}
 		}
 
@@ -191,17 +178,19 @@ public class Ball extends JPanel {
 	public void startBallTimer() {
 		for(int i=0;i < 2;i++) 
 		{
-			final int id=i;
 			new Thread(new Runnable() {
 				public void run() 
 				{
 					while ( ! Thread.currentThread().isInterrupted() )
 					{
-						//System.out.println(_positionY);
-						move();
+						/*depends on play or pause*/
+						if (Game.is_start())
+						{
+							move();
+						}
+						
 						try {
-							Thread.sleep(_timeToWait/*A changer pr le bonus vitesse*/);
-							//System.out.println(_timeToWait);
+							Thread.sleep(_timeToWait);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}

@@ -1,8 +1,5 @@
 package bricks;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-
 import game.Ball;
 import game.Game;
 
@@ -11,6 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Brick extends JPanel{
+
+	private static final long serialVersionUID = 1L;
+
 	private int _positionX;
 	private int _positionY;
 	private int _width;
@@ -22,36 +22,26 @@ public class Brick extends JPanel{
 	private int _typeOfGift;
 	
 	/*Constructor*/
-	public Brick(JPanel gameArea, TypeOfGift gift/*String url*/) {
+	public Brick(JPanel gameArea, TypeOfGift gift) {
 		super();
 		
 		_gift = gift;
-		//System.out.println(url);
 		ImageIcon imgIcon = new ImageIcon(gift.getUrl());
 		JLabel img = new JLabel(imgIcon);
 		_width = imgIcon.getIconWidth();
 		_height = imgIcon.getIconHeight();
-		//System.out.println("TAILLE" + _width + ";" + _height);
 		this.add(img);
 		this._isPositionned = false;
 			
 		_gameArea = gameArea;		
 	}
 	
-	/*GETTERS AND SETTERS*/
-	public int getPositionX() {
-		return _positionX;
-	}
 	
-	public void setPositionX(int x) {		
-		_positionX = x;
-	}
 	
 	public void display(int positionX, int positionY) {
 		_positionX = positionX;
 		_positionY = positionY;
 		this.setBounds(_positionX, _positionY, _width, _height);
-		//System.out.println(_positionX +";"+ _positionY +";"+ _width +";"+ _height);
 		_gameArea.add(this);
 		this.setVisible(true);
 	}
@@ -60,7 +50,6 @@ public class Brick extends JPanel{
 		_width = 0;
 		_height = 0;
 		this.setBounds(_positionX, _positionY, _width, _height);
-		//this.setVisible(false);
 	}
 	
 	public int isInCollisionWith()
@@ -75,7 +64,7 @@ public class Brick extends JPanel{
 				}
 			}
 		}
-		/*Colision*/
+		/*Collision*/
 		return 1;
 	}
 	
@@ -93,7 +82,6 @@ public class Brick extends JPanel{
 		/*random speed*/
 		case 1:
 			int speedModificator;
-			//speedModificator = (int)(Math.random() * (10 -10) - 10) + 10;
 			speedModificator = (int)(Math.random() * (5- (-5))) + (-5);
 			System.out.println("CHANGMENT SPEED : " + speedModificator);
 			for(int i = 0; i< Game.get_listOfBall().size(); ++i)
@@ -127,13 +115,18 @@ public class Brick extends JPanel{
 				Game.get_palet().set_width(Game.get_palet().get_width()/2);
 				this.setBounds(_positionX, _positionY, _width, _height);
 			}
-				break;
-				
-		/*Ball size modification?*/
+				break;				
 		}
 	}
 	
-	/*Getters and Setters*/
+	/*GETTERS AND SETTERS*/
+	public int getPositionX() {
+		return _positionX;
+	}
+	
+	public void setPositionX(int x) {		
+		_positionX = x;
+	}
 
 	public int getPositionY() {
 		return _positionY;

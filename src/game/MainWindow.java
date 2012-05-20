@@ -1,13 +1,12 @@
 package game;
 
-import java.awt.Color;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
 public class MainWindow extends JFrame{
 
+	private static final long serialVersionUID = 1L;
 	private Interface _game;
 	/*Constructor*/
 	public MainWindow() {
@@ -23,7 +22,7 @@ public class MainWindow extends JFrame{
 		/*save*/
 		
 		/*close window*/
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	/*Getter and setter*/
@@ -34,5 +33,4 @@ public class MainWindow extends JFrame{
 	public void set_panel(Interface panel) {
 		_game = panel;
 	}
-	
 }

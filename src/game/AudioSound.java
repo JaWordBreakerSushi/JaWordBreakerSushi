@@ -8,7 +8,9 @@ import javax.swing.JApplet;
 
 public class AudioSound extends JApplet 
 {
-   private AudioClip sound;  
+
+	private static final long serialVersionUID = 1L;
+private AudioClip sound;  
    
    public AudioSound(){
 	   init();

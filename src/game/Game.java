@@ -18,30 +18,28 @@ public class Game {
 	/*About payer*/
 	private static int _score = 0;
 	
-	/*Readed on scores dictionnary*/
+	/*Readed on scores ; dictionnary*/
 	private ArrayList<String> _listOfWords = new ArrayList<String>();
 	private LinkedList<Integer> _listOfScores = new LinkedList<Integer>();
 
-	/*FAIRE UNE Intern class?*/
+	/**/
 	private static String _selectedWord;
 	private int _levelNumber;
 	private static LinkedList<Brick> _listOfBrick = new LinkedList<Brick>();
 	private static LinkedList<Ball> _listOfBall = new LinkedList<Ball>();
 	private static PaletBrick _palet;
-	public boolean _start = false;
+	private static boolean _start = false;
 	private static JPanel _gameArea;
-	/**/
 	
 	
 	public Game(JPanel gameArea) {
-		
 		_gameArea = gameArea;
-		
-		/*Create the main window*/
-		
+				
 		_levelNumber = 1;
-		/*SELECTIONNER LE MOT
-		level 1 => 3lettres
+		/*SELECTIONNER LE MOT*/
+		
+		//Information :
+		/*level 1 => 3lettres
 		level 2 => 4lettres
 		level n => n+2lettres*/
 		this.prepareLevel(gameArea);
@@ -52,9 +50,8 @@ public class Game {
 	}
 	
 	public void prepareLevel(JPanel gameArea){
-		//System.out.println("AAAAAA");
 		
-		/*palet's Brick (just ONE)*/
+		/*palet's Brick (unique)*/
 		_palet = new PaletBrick(gameArea, TypeOfGift.PALET);
 		/*init size*/
 		_palet.set_width(_palet.get_width() / 2);
@@ -85,7 +82,6 @@ public class Game {
 		}
 //		int widthLargestBrick = _listOfBrick.getLast().get_width();
 //		int heightHigherBrick = _listOfBrick.getLast().get_height();
-		//-1???
 		int widthLargestBrick = 86;
 		int heightHigherBrick = 44;
 		/*magic's' Bricks*/
@@ -139,9 +135,7 @@ public class Game {
 				}
 			}
 			while (!justPosisionnedABrick);
-		}
-		
-		//_listOfBall.get(0).startBallTimer();
+		}		
 	}
 
 	/*Getters and Setters*/
@@ -204,5 +198,13 @@ public class Game {
 
 	public static void set_score(int score) {
 		_score = score;
+	}
+
+	public static boolean is_start() {
+		return _start;
+	}
+
+	public static void set_start(boolean start) {
+		_start = start;
 	}	
 }
