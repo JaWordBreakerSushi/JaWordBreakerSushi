@@ -2,12 +2,11 @@ package bricks;
 
 import javax.swing.JPanel;
 
-import game.Ball;
-import game.Game;
-
 public class UnBreakableBrick extends Brick{
 	
+	private static final long serialVersionUID = 1L;
+
 	public UnBreakableBrick(JPanel gameArea, TypeOfGift gift) {
-		super(gameArea, gift/*.getUrl()*/);		
+		super(gameArea, gift);		
 	}
 }
