@@ -15,7 +15,5 @@ public class Main extends JApplet{
 		_gameInterface = new MainWindow();
 
 		_gameInterface.showWindow();
-		
-		//Game game = new Game();
 	}
 }

@@ -11,7 +11,9 @@ import java.awt.*;
 
 public class Sound extends Applet implements MouseListener
 {
-// To refer to the sounds.
+
+	private static final long serialVersionUID = 1L;
+	// To refer to the sounds.
     AudioClip soundFile1;
     AudioClip soundFile2;
 

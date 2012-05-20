@@ -38,9 +38,6 @@ public class Interface extends JFrame {
     private AudioClip sound;
     private Applet applet = new Applet();
     
-    private LinkedList<String> _dico;
-    private String _wordChosen;
-
     public static void main(String[] args){
 
     	AudioSound as = new AudioSound();
@@ -61,7 +58,7 @@ public class Interface extends JFrame {
 			System.out.println("IOException " + e.getMessage());
 		}
 		
-		_wordChosen = chooseWordFromDico();
+		//Game.set_selectedWord(chooseWordFromDico());
 		
 		setTitle("JaWordBreaker Sushi");
 		setSize(800, 586);
@@ -234,7 +231,7 @@ public class Interface extends JFrame {
 					else
 						Game.set_start(true);
 					
-					popup = new PopupWindow(_wordChosen);
+					popup = new PopupWindow(Game.get_selectedWord());
 					JFrame popupWindow = popup.get_popupWindow();
 					if(!popupWindow.isVisible()){
 						popupWindow.setVisible(true);
@@ -435,10 +432,9 @@ public class Interface extends JFrame {
 		DataInputStream dataIn = new DataInputStream(in);
 		BufferedReader br = new BufferedReader(new InputStreamReader(dataIn));
 		String strLine;
-		_dico = new LinkedList<String>();
 		
 		while((strLine = br.readLine()) != null){
-			_dico.add(strLine);
+			Game.get_listOfWords().add(strLine);
 		}
 		
 		dataIn.close();
@@ -450,10 +446,10 @@ public class Interface extends JFrame {
 	      _letters.setText(_letters.getText() + " \n" + letter);
 		}
 	
-	public String chooseWordFromDico(){
+	public static String chooseWordFromDico(){
 	     Random randomGenerator = new Random();
-	int index = randomGenerator.nextInt(_dico.size());    
-	return _dico.get(index);
+	int index = randomGenerator.nextInt(Game.get_listOfWords().size());    
+	return Game.get_listOfWords().get(index);
 	}
 	    
 	public static void displayNbBalls(int nb) {

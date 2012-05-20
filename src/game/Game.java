@@ -19,7 +19,7 @@ public class Game {
 	private static int _score = 0;
 	
 	/*Readed on scores ; dictionnary*/
-	private ArrayList<String> _listOfWords = new ArrayList<String>();
+	private static ArrayList<String> _listOfWords = new ArrayList<String>();
 	private LinkedList<Integer> _listOfScores = new LinkedList<Integer>();
 
 	/**/
@@ -36,7 +36,9 @@ public class Game {
 		_gameArea = gameArea;
 				
 		_levelNumber = 1;
-		/*SELECTIONNER LE MOT*/
+		/*select word*/
+		_selectedWord = game.Interface.chooseWordFromDico();
+		System.out.println("\n" + _selectedWord);
 		
 		//Information :
 		/*level 1 => 3lettres
@@ -62,7 +64,6 @@ public class Game {
 		_listOfBall.get(0).display(this._width/2 - (_listOfBall.get(0).get_width()/2), _palet.getPositionY() - _listOfBall.get(0).get_height());
 		
 		/*Depends of levelNumber*/
-		_selectedWord = "TEST";
 		
 		/*letter's Bricks*/
 		char letter;
@@ -148,7 +149,7 @@ public class Game {
 		return _selectedWord;
 	}
 
-	public void set_selectedWord(String selectedWord) {
+	public static void set_selectedWord(String selectedWord) {
 		_selectedWord = selectedWord;
 	}
 
@@ -206,5 +207,13 @@ public class Game {
 
 	public static void set_start(boolean start) {
 		_start = start;
+	}
+
+	public static ArrayList<String> get_listOfWords() {
+		return _listOfWords;
+	}
+
+	public void set_listOfWords(ArrayList<String> listOfWords) {
+		_listOfWords = listOfWords;
 	}	
 }
