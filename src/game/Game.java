@@ -18,19 +18,18 @@ public class Game {
 	/*About payer*/
 	private static int _score = 0;
 	
-	/*Readed on scores dictionnary*/
+	/*Readed on scores ; dictionnary*/
 	private ArrayList<String> _listOfWords = new ArrayList<String>();
 	private LinkedList<Integer> _listOfScores = new LinkedList<Integer>();
 
-	/*FAIRE UNE Intern class?*/
+	/**/
 	private static String _selectedWord;
 	private int _levelNumber;
 	private static LinkedList<Brick> _listOfBrick = new LinkedList<Brick>();
 	private static LinkedList<Ball> _listOfBall = new LinkedList<Ball>();
 	private static PaletBrick _palet;
-	public boolean _start = false;
+	private static boolean _start = false;
 	private static JPanel _gameArea;
-	/**/
 	
 	
 	public Game(JPanel gameArea) {
@@ -204,5 +203,13 @@ public class Game {
 
 	public static void set_score(int score) {
 		_score = score;
+	}
+
+	public static boolean is_start() {
+		return _start;
+	}
+
+	public static void set_start(boolean start) {
+		_start = start;
 	}	
 }

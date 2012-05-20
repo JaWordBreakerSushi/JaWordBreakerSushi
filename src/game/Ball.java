@@ -197,11 +197,17 @@ public class Ball extends JPanel {
 				{
 					while ( ! Thread.currentThread().isInterrupted() )
 					{
-						//System.out.println(_positionY);
-						move();
+						/*depends on play or pause*/
+						if (Game.is_start())
+						{
+							move();
+						}
+						else
+						{
+						}
+						
 						try {
-							Thread.sleep(_timeToWait/*A changer pr le bonus vitesse*/);
-							//System.out.println(_timeToWait);
+							Thread.sleep(_timeToWait);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}

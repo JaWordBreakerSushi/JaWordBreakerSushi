@@ -121,15 +121,14 @@ public class Interface extends JFrame {
 	}
 	
 	public void playingInterface(){
+		
+		Game.set_start(true);
 				
 		_content.setLayout(new BoxLayout(_content, BoxLayout.X_AXIS));
         
         JPanel gamePanel = new JPanel(new BorderLayout(0,0));
         _gameArea = new JPanel ();
         _gameArea.setLayout(null);
-       //_gameArea.setLayout(new GridBagLayout());
-       //_gameArea.setLayout(new GridLayout(3, 2, 5, 5));
-        
 		_gameData = new Game(_gameArea);
         
         JPanel borderTop = new JPanel();
@@ -182,9 +181,7 @@ public class Interface extends JFrame {
         borderBottom.setBorder(new EmptyBorder(-5, -5, -5, -5) );
         gamePanel.setBorder(new EmptyBorder(-5, -5, -5, -5) );
         _gameArea.setBorder(new EmptyBorder(-5, -5, -5, -5) );
-
         _gameArea.setBackground(new Color(247,217,129));
-        //System.out.println(gamePanel.getSize()); //500 * 500
         
         borderTop.add(borderTopBackground);
         borderLeft.add(borderLeftBackground);
@@ -194,20 +191,26 @@ public class Interface extends JFrame {
         gamePanel.add(borderLeft, BorderLayout.WEST);
         gamePanel.add(borderRight, BorderLayout.EAST);
         gamePanel.add(borderBottom, BorderLayout.SOUTH);
-        //gamePanel.setBackground(Color.BLUE);
         gamePanel.add(_gameArea, BorderLayout.CENTER);
         _content.add(gamePanel);
+        
         menu.add(name);
         menu.add(_score);
         menu.add(_nbBalls);
         menu.add(_letters);
-
         _content.add(menu);
         
         KeyListener keyListener = new KeyListener() {
             public void keyPressed(KeyEvent keyEvent) {
-            	//System.out.println(keyEvent.getKeyCode());
               if(KeyEvent.getKeyText(keyEvent.getKeyCode()) == "Espace"){
+            	  if(Game.is_start())
+            	  {
+            		  Game.set_start(false);
+            	  }
+            	  else
+            	  {
+            		  Game.set_start(true);
+            	  }
             	  JFrame popupWindow = popup.get_popupWindow();
             	  if(!popupWindow.isVisible()){
 	            	  popupWindow.setVisible(true);
@@ -400,7 +403,8 @@ public class Interface extends JFrame {
 			}
 		}
 		dataIn.close();
-	}	
+	}
+	
 	/*Getters and Setters*/
 
 	public static void displayLetter(char letter) {
