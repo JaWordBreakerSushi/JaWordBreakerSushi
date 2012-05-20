@@ -15,21 +15,27 @@ public class Game {
 	private static int _width = 520;
 	private static int _height = 480;
 	
+	/*About payer*/
+	private static int _score = 0;
 	
 	/*Readed on scores dictionnary*/
 	private ArrayList<String> _listOfWords = new ArrayList<String>();
 	private LinkedList<Integer> _listOfScores = new LinkedList<Integer>();
 
 	/*FAIRE UNE Intern class?*/
-	private String _selectedWord;
+	private static String _selectedWord;
 	private int _levelNumber;
 	private static LinkedList<Brick> _listOfBrick = new LinkedList<Brick>();
-	private LinkedList<Ball> _listOfBall = new LinkedList<Ball>();
+	private static LinkedList<Ball> _listOfBall = new LinkedList<Ball>();
+	private static PaletBrick _palet;
 	public boolean _start = false;
+	private static JPanel _gameArea;
 	/**/
 	
 	
 	public Game(JPanel gameArea) {
+		
+		_gameArea = gameArea;
 		
 		/*Create the main window*/
 		
@@ -48,19 +54,29 @@ public class Game {
 	public void prepareLevel(JPanel gameArea){
 		//System.out.println("AAAAAA");
 		
+		/*palet's Brick (just ONE)*/
+		_palet = new PaletBrick(gameArea, TypeOfGift.PALET);
+		/*init size*/
+		_palet.set_width(_palet.get_width() / 2);
+		_palet.display(this._width/2 - _palet.get_width()/2, this._height - _palet.get_height());
+		
 		/*Ball to start*/
 		_listOfBall.add(new Ball(gameArea));
-		_listOfBall.get(0).display(this._width/2 - (_listOfBall.get(0).get_width()/2), this._height - _listOfBall.get(0).get_height());
-		
-		/*palet's Brick (just ONE)*/
-		//NOoooooooON//_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.LETTER));
+		_listOfBall.get(0).display(this._width/2 - (_listOfBall.get(0).get_width()/2), _palet.getPositionY() - _listOfBall.get(0).get_height());
 		
 		/*Depends of levelNumber*/
-		_selectedWord = "TEST";		
+		_selectedWord = "TEST";
 		
 		/*letter's Bricks*/
+		char letter;
 		for(int i = 0; i < _levelNumber+3; i++) {
-			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.LETTER));
+			letter = _selectedWord.charAt(i);
+			_listOfBrick.add(new LetterBrick(gameArea, TypeOfGift.LETTER, letter));
+		}
+		
+		/*ball's Bricks*/
+		for(int i = 0; i < _levelNumber; i++) {
+			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.BALL));
 		}
 		
 		/*bonus' Bricks*/
@@ -82,15 +98,14 @@ public class Game {
 			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.TEMPORAL));
 		}
 		
-		
 		/*fixe's Bricks*/
-		for(int i = 0; i < _levelNumber+8; i++) {
-			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.FIXE));
+		for(int i = 0; i < _levelNumber+4; i++) {
+			_listOfBrick.add(new UnBreakableBrick(gameArea, TypeOfGift.FIXE));
 		}	
 			
 		/*movable's Bricks*/
 		for(int i = 0; i < _levelNumber+4; i++) {
-			_listOfBrick.add(new BreakableBrick(gameArea, TypeOfGift.MOVABLE));
+			_listOfBrick.add(new UnBreakableBrick(gameArea, TypeOfGift.MOVABLE));
 		}
 		
 		/*place bricks*/
@@ -125,17 +140,46 @@ public class Game {
 			}
 			while (!justPosisionnedABrick);
 		}
-		_listOfBall.get(0).startBallTimer();
+		
+		//_listOfBall.get(0).startBallTimer();
 	}
 
 	/*Getters and Setters*/
 	
+	public static JPanel get_gameArea() {
+		return _gameArea;
+	}
+	
+	public static String get_selectedWord() {
+		return _selectedWord;
+	}
+
+	public void set_selectedWord(String selectedWord) {
+		_selectedWord = selectedWord;
+	}
+
 	public static LinkedList<Brick> get_listOfBrick() {
 		return _listOfBrick;
 	}
 
 	public void set_listOfBrick(LinkedList<Brick> listOfBrick) {
 		_listOfBrick = listOfBrick;
+	}
+
+	public static LinkedList<Ball> get_listOfBall() {
+		return _listOfBall;
+	}
+
+	public void set_listOfBall(LinkedList<Ball> listOfBall) {
+		_listOfBall = listOfBall;
+	}
+
+	public static PaletBrick get_palet() {
+		return _palet;
+	}
+
+	public void set_palet(PaletBrick palet) {
+		_palet = palet;
 	}
 
 	public static int get_width() {
@@ -152,5 +196,13 @@ public class Game {
 
 	public void set_height(int height) {
 		_height = height;
+	}
+
+	public static int get_score() {
+		return _score;
+	}
+
+	public static void set_score(int score) {
+		_score = score;
 	}	
 }

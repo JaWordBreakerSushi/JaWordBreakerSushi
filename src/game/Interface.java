@@ -28,8 +28,11 @@ public class Interface extends JFrame {
 	private JPanel _gameArea;
 	private Game _gameData;
     private PopupWindow popup;
-	private Container _content = getContentPane();
+	public Container _content = getContentPane();
 	private JPanel _scoreList;
+	private static JLabel _score;
+	private static JLabel _letters;
+	private static JLabel _nbBalls;
 	private static Color jaune = new Color(255,213,91);
 	private static Color orange = new Color(253,111,15);
 	
@@ -128,7 +131,7 @@ public class Interface extends JFrame {
             public void actionPerformed(ActionEvent e)
             {
                 //Execute when button is pressed
-            	_content.removeAll();  
+            	_content.removeAll();
             	highScoresInterface();
             }
         }); 
@@ -167,6 +170,7 @@ public class Interface extends JFrame {
         
         ImagePanel menu = new ImagePanel("./src/img/background_menu.jpg");
         
+        /*Display in right panel*/
         Font fontName = new Font("Arial", Font.BOLD, 18);
         Font fontScore = new Font("Arial", Font.BOLD, 15);
         JLabel name = new JLabel("Amethyste");
@@ -175,11 +179,29 @@ public class Interface extends JFrame {
         name.setFont(fontName);
         name.setForeground(Color.WHITE);
         
-        JLabel score = new JLabel("Score : ");
-        score.setPreferredSize(new Dimension(180, 25));
-        score.setHorizontalAlignment(JLabel.LEFT);
-        score.setFont(fontScore);
-        score.setForeground(Color.WHITE);
+        /*Current Score*/
+        _score = new JLabel();
+        _score.setPreferredSize(new Dimension(180, 25));
+        _score.setHorizontalAlignment(JLabel.LEFT);
+        _score.setFont(fontScore);
+        _score.setForeground(Color.WHITE);
+        _score.setText("Score : " + _gameData.get_score());
+        
+        /*Current number of balls*/
+        _nbBalls = new JLabel();
+        _nbBalls.setPreferredSize(new Dimension(180, 25));
+        _nbBalls.setHorizontalAlignment(JLabel.LEFT);
+        _nbBalls.setFont(fontScore);
+        _nbBalls.setForeground(Color.WHITE);
+        _nbBalls.setText("Ball : 0");
+        
+        /*Known letters*/
+        _letters = new JLabel();
+        _letters.setPreferredSize(new Dimension(180, 25));
+        _letters.setHorizontalAlignment(JLabel.LEFT);
+        _letters.setFont(fontScore);
+        _letters.setForeground(Color.WHITE);
+        _letters.setText("Letters :");        
         
         borderTop.setBorder(new EmptyBorder(-5, -5, -5, -5) );
         borderLeft.setBorder(new EmptyBorder(-5, -5, -5, -5) );
@@ -203,12 +225,15 @@ public class Interface extends JFrame {
         gamePanel.add(_gameArea, BorderLayout.CENTER);
         _content.add(gamePanel);
         menu.add(name);
-        menu.add(score);
+        menu.add(_score);
+        menu.add(_nbBalls);
+        menu.add(_letters);
 
         _content.add(menu);
         
         KeyListener keyListener = new KeyListener() {
             public void keyPressed(KeyEvent keyEvent) {
+            	//System.out.println(keyEvent.getKeyCode());
               if(KeyEvent.getKeyText(keyEvent.getKeyCode()) == "Espace"){
             	  popup = new PopupWindow(_wordChosen);
             	  JFrame popupWindow = popup.get_popupWindow();
@@ -216,6 +241,18 @@ public class Interface extends JFrame {
 	            	  popupWindow.setVisible(true);
 	            	  popupWindow.setLocationRelativeTo(null);
             	  }
+              }
+              //Enter
+              if (keyEvent.getKeyCode() == 10)
+              {
+            	  if (_gameData.get_listOfBall().size() > 0)
+            	  {
+            		  _gameData.get_listOfBall().getFirst().startBallTimer();
+            	  }
+              }
+              //a
+              if(keyEvent.getKeyCode() == 65)
+              {
               }
             }
 
@@ -225,6 +262,35 @@ public class Interface extends JFrame {
         };
         
         _content.addKeyListener(keyListener);
+        
+        KeyListener keyListenerFleche = new KeyListener()
+		{
+	        public void keyPressed(KeyEvent keyEvent)
+	        {
+	        	if (keyEvent.getKeyCode() == 39)
+	        	{
+	        		//right
+	        		if( _gameData.get_palet().getPositionX() < _gameData.get_width() - _gameData.get_palet().get_width())
+	        		{
+	        			_gameData.get_palet().display(_gameData.get_palet().getPositionX() +6, _gameData.get_palet().getPositionY());
+	        		}
+	        	}
+	        	if (keyEvent.getKeyCode() == 37)
+	        	{
+	        		//left
+	        		if( _gameData.get_palet().getPositionX() > 0)
+	        		{
+	        			_gameData.get_palet().display(_gameData.get_palet().getPositionX() -6, _gameData.get_palet().getPositionY());
+	        		}
+	        	}
+	        }
+
+	        public void keyReleased(KeyEvent keyEvent) {}
+	        public void keyTyped(KeyEvent keyEvent) {}
+
+	    };
+	    _content.addKeyListener(keyListenerFleche);    
+        
         this.setContentPane(_content);
         this.setVisible(true);
 	}
@@ -360,11 +426,9 @@ public class Interface extends JFrame {
 					}
 				}
 			}
-	
 		}
-		
 		dataIn.close();
-	}
+	}	
 	
 	public void readDico() throws IOException {
 		
@@ -385,6 +449,12 @@ public class Interface extends JFrame {
 		dataIn.close();
 	}
 	
+	/*Getters and Setters*/
+
+	public static void displayLetter(char letter) {
+      _letters.setText(_letters.getText() + "  \n" + letter);
+	}
+	
     public String chooseWordFromDico(){
     	Random randomGenerator = new Random();
     	int index = randomGenerator.nextInt(_dico.size());
@@ -392,4 +462,12 @@ public class Interface extends JFrame {
     	return _dico.get(index);
     }
     	
+	public static void displayNbBalls(int nb) {
+		/*nb without the current ball*/
+	      _nbBalls.setText("Ball : " + (nb-1));
+		}
+	
+	public static void displayScore(int score) {
+		_score.setText("Score : " + score);
+	}	
 }
