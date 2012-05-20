@@ -88,6 +88,8 @@ public class PopupWindow extends JPanel {
                 String text = wordProposed.getText();
                 if(text.equals(_wordChosen)){
                 	result.setText("Congratulations! You find the right word!");
+                	/*Next level*/
+                	Game.passToTheNextLevel();
                 }
                 else{
                 	result.setText("Sorry, you don't found the right word. Try again!");
