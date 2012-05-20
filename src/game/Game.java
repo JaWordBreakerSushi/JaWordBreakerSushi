@@ -33,14 +33,13 @@ public class Game {
 	
 	
 	public Game(JPanel gameArea) {
-		
 		_gameArea = gameArea;
-		
-		/*Create the main window*/
-		
+				
 		_levelNumber = 1;
-		/*SELECTIONNER LE MOT
-		level 1 => 3lettres
+		/*SELECTIONNER LE MOT*/
+		
+		//Information :
+		/*level 1 => 3lettres
 		level 2 => 4lettres
 		level n => n+2lettres*/
 		this.prepareLevel(gameArea);
@@ -51,9 +50,8 @@ public class Game {
 	}
 	
 	public void prepareLevel(JPanel gameArea){
-		//System.out.println("AAAAAA");
 		
-		/*palet's Brick (just ONE)*/
+		/*palet's Brick (unique)*/
 		_palet = new PaletBrick(gameArea, TypeOfGift.PALET);
 		/*init size*/
 		_palet.set_width(_palet.get_width() / 2);
@@ -84,7 +82,6 @@ public class Game {
 		}
 //		int widthLargestBrick = _listOfBrick.getLast().get_width();
 //		int heightHigherBrick = _listOfBrick.getLast().get_height();
-		//-1???
 		int widthLargestBrick = 86;
 		int heightHigherBrick = 44;
 		/*magic's' Bricks*/
@@ -138,9 +135,7 @@ public class Game {
 				}
 			}
 			while (!justPosisionnedABrick);
-		}
-		
-		//_listOfBall.get(0).startBallTimer();
+		}		
 	}
 
 	/*Getters and Setters*/

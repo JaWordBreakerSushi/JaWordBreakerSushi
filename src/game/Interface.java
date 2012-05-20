@@ -148,153 +148,153 @@ public void startInterface(){
 	this.setVisible(true);
 }
 
-public void playingInterface(){
-	Game.set_start(true);
-
-	_content.setLayout(new BoxLayout(_content, BoxLayout.X_AXIS));
+	public void playingInterface(){
+		Game.set_start(true);
 	
-	JPanel gamePanel = new JPanel(new BorderLayout(0,0));
-	_gameArea = new JPanel ();
-	_gameArea.setLayout(null);
-        
-	_gameData = new Game(_gameArea);
-        
-	JPanel borderTop = new JPanel();
-	JPanel borderLeft = new JPanel();
-	JPanel borderRight = new JPanel();
-	JPanel borderBottom = new JPanel();
-	JLabel borderTopBackground = new JLabel(new ImageIcon("./src/img/border_top.gif"));
-	JLabel borderLeftBackground = new JLabel(new ImageIcon("./src/img/border_left.gif"));
-	JLabel borderRightBackground = new JLabel(new ImageIcon("./src/img/border_right.gif"));
-	JLabel borderBottomBackground = new JLabel(new ImageIcon("./src/img/border_bottom.jpg"));
-        
-	ImagePanel menu = new ImagePanel("./src/img/background_menu.jpg");
-	
-	/*Display in right panel*/
-	Font fontName = new Font("Arial", Font.BOLD, 18);
-	Font fontScore = new Font("Arial", Font.BOLD, 15);
-	JLabel name = new JLabel("Amethyste");
-	name.setPreferredSize(new Dimension(180, 35));
-	name.setHorizontalAlignment(JLabel.LEFT);
-	name.setFont(fontName);
-	name.setForeground(Color.WHITE);
-        
-	/*Current Score*/
-	_score = new JLabel();
-	_score.setPreferredSize(new Dimension(180, 25));
-	_score.setHorizontalAlignment(JLabel.LEFT);
-	_score.setFont(fontScore);
-	_score.setForeground(Color.WHITE);
-	_score.setText("Score : " + _gameData.get_score());
-        
-	/*Current number of balls*/
-	_nbBalls = new JLabel();
-	_nbBalls.setPreferredSize(new Dimension(180, 25));
-	_nbBalls.setHorizontalAlignment(JLabel.LEFT);
-	_nbBalls.setFont(fontScore);
-	_nbBalls.setForeground(Color.WHITE);
-	_nbBalls.setText("Ball : 0");
-	
-	/*Known letters*/
-	_letters = new JLabel();
-	_letters.setPreferredSize(new Dimension(180, 25));
-	_letters.setHorizontalAlignment(JLabel.LEFT);
-	_letters.setFont(fontScore);
-	_letters.setForeground(Color.WHITE);
-	_letters.setText("Letters :");
-	
-	borderTop.setBorder(new EmptyBorder(-5, -5, -5, -5) );
-	borderLeft.setBorder(new EmptyBorder(-5, -5, -5, -5) );
-	borderRight.setBorder(new EmptyBorder(-5, -5, -5, -5) );
-	borderBottom.setBorder(new EmptyBorder(-5, -5, -5, -5) );
-	gamePanel.setBorder(new EmptyBorder(-5, -5, -5, -5) );
-	_gameArea.setBorder(new EmptyBorder(-5, -5, -5, -5) );
-	
-	_gameArea.setBackground(new Color(247,217,129));
-        
-	borderTop.add(borderTopBackground);
-	borderLeft.add(borderLeftBackground);
-	borderRight.add(borderRightBackground);
-	borderBottom.add(borderBottomBackground);
-	gamePanel.add(borderTop, BorderLayout.NORTH);
-	gamePanel.add(borderLeft, BorderLayout.WEST);
-	gamePanel.add(borderRight, BorderLayout.EAST);
-	gamePanel.add(borderBottom, BorderLayout.SOUTH);
-	gamePanel.add(_gameArea, BorderLayout.CENTER);
-	_content.add(gamePanel);
-	menu.add(name);
-	menu.add(_score);
-	menu.add(_nbBalls);
-	menu.add(_letters);	
-	_content.add(menu);
-	
-	KeyListener keyListener = new KeyListener() {
-		public void keyPressed(KeyEvent keyEvent) {
-			if(KeyEvent.getKeyText(keyEvent.getKeyCode()) == "Espace"){
-				if (Game.is_start())
-					Game.set_start(false);
-				else
-					Game.set_start(true);
-				
-				popup = new PopupWindow(_wordChosen);
-				JFrame popupWindow = popup.get_popupWindow();
-				if(!popupWindow.isVisible()){
-					popupWindow.setVisible(true);
-					popupWindow.setLocationRelativeTo(null);
+		_content.setLayout(new BoxLayout(_content, BoxLayout.X_AXIS));
+		
+		JPanel gamePanel = new JPanel(new BorderLayout(0,0));
+		_gameArea = new JPanel ();
+		_gameArea.setLayout(null);
+	        
+		_gameData = new Game(_gameArea);
+	        
+		JPanel borderTop = new JPanel();
+		JPanel borderLeft = new JPanel();
+		JPanel borderRight = new JPanel();
+		JPanel borderBottom = new JPanel();
+		JLabel borderTopBackground = new JLabel(new ImageIcon("./src/img/border_top.gif"));
+		JLabel borderLeftBackground = new JLabel(new ImageIcon("./src/img/border_left.gif"));
+		JLabel borderRightBackground = new JLabel(new ImageIcon("./src/img/border_right.gif"));
+		JLabel borderBottomBackground = new JLabel(new ImageIcon("./src/img/border_bottom.jpg"));
+	        
+		ImagePanel menu = new ImagePanel("./src/img/background_menu.jpg");
+		
+		/*Display in right panel*/
+		Font fontName = new Font("Arial", Font.BOLD, 18);
+		Font fontScore = new Font("Arial", Font.BOLD, 15);
+		JLabel name = new JLabel("Amethyste");
+		name.setPreferredSize(new Dimension(180, 35));
+		name.setHorizontalAlignment(JLabel.LEFT);
+		name.setFont(fontName);
+		name.setForeground(Color.WHITE);
+	        
+		/*Current Score*/
+		_score = new JLabel();
+		_score.setPreferredSize(new Dimension(180, 25));
+		_score.setHorizontalAlignment(JLabel.LEFT);
+		_score.setFont(fontScore);
+		_score.setForeground(Color.WHITE);
+		_score.setText("Score : " + _gameData.get_score());
+	        
+		/*Current number of balls*/
+		_nbBalls = new JLabel();
+		_nbBalls.setPreferredSize(new Dimension(180, 25));
+		_nbBalls.setHorizontalAlignment(JLabel.LEFT);
+		_nbBalls.setFont(fontScore);
+		_nbBalls.setForeground(Color.WHITE);
+		_nbBalls.setText("Ball : 0");
+		
+		/*Known letters*/
+		_letters = new JLabel();
+		_letters.setPreferredSize(new Dimension(180, 25));
+		_letters.setHorizontalAlignment(JLabel.LEFT);
+		_letters.setFont(fontScore);
+		_letters.setForeground(Color.WHITE);
+		_letters.setText("Letters :");
+		
+		borderTop.setBorder(new EmptyBorder(-5, -5, -5, -5) );
+		borderLeft.setBorder(new EmptyBorder(-5, -5, -5, -5) );
+		borderRight.setBorder(new EmptyBorder(-5, -5, -5, -5) );
+		borderBottom.setBorder(new EmptyBorder(-5, -5, -5, -5) );
+		gamePanel.setBorder(new EmptyBorder(-5, -5, -5, -5) );
+		_gameArea.setBorder(new EmptyBorder(-5, -5, -5, -5) );
+		
+		_gameArea.setBackground(new Color(247,217,129));
+	        
+		borderTop.add(borderTopBackground);
+		borderLeft.add(borderLeftBackground);
+		borderRight.add(borderRightBackground);
+		borderBottom.add(borderBottomBackground);
+		gamePanel.add(borderTop, BorderLayout.NORTH);
+		gamePanel.add(borderLeft, BorderLayout.WEST);
+		gamePanel.add(borderRight, BorderLayout.EAST);
+		gamePanel.add(borderBottom, BorderLayout.SOUTH);
+		gamePanel.add(_gameArea, BorderLayout.CENTER);
+		_content.add(gamePanel);
+		menu.add(name);
+		menu.add(_score);
+		menu.add(_nbBalls);
+		menu.add(_letters);	
+		_content.add(menu);
+		
+		KeyListener keyListener = new KeyListener() {
+			public void keyPressed(KeyEvent keyEvent) {
+				if(KeyEvent.getKeyText(keyEvent.getKeyCode()) == "Espace"){
+					if (Game.is_start())
+						Game.set_start(false);
+					else
+						Game.set_start(true);
+					
+					popup = new PopupWindow(_wordChosen);
+					JFrame popupWindow = popup.get_popupWindow();
+					if(!popupWindow.isVisible()){
+						popupWindow.setVisible(true);
+						popupWindow.setLocationRelativeTo(null);
+					}
 				}
-			}
-              //Enter
-			if (keyEvent.getKeyCode() == 10)
-			{
-				if (_gameData.get_listOfBall().size() > 0)
+	              //Enter
+				if (keyEvent.getKeyCode() == 10)
 				{
-					_gameData.get_listOfBall().getFirst().startBallTimer();
+					if (_gameData.get_listOfBall().size() > 0)
+					{
+						_gameData.get_listOfBall().getFirst().startBallTimer();
+					}
 				}
-			}
-			//a
-			if(keyEvent.getKeyCode() == 65)
-			{
-			}
-      }
-
-		public void keyReleased(KeyEvent keyEvent) {}
-		public void keyTyped(KeyEvent keyEvent) {}
-
-        };
-        
-        _content.addKeyListener(keyListener);
-        
-        KeyListener keyListenerFleche = new KeyListener()
-        {
-        	public void keyPressed(KeyEvent keyEvent)
-        	{
-        		if (keyEvent.getKeyCode() == 39)
-        		{
-        			//right
-        			if( _gameData.get_palet().getPositionX() < _gameData.get_width() - _gameData.get_palet().get_width())
-        			{
-        				_gameData.get_palet().display(_gameData.get_palet().getPositionX() +6, _gameData.get_palet().getPositionY());
-        			}
-        		}
-        		if (keyEvent.getKeyCode() == 37)
-        		{
-        			//left
-        			if( _gameData.get_palet().getPositionX() > 0)
-        			{
-        				_gameData.get_palet().display(_gameData.get_palet().getPositionX() -6, _gameData.get_palet().getPositionY());
-        			}
-        		}
-        	}
-
-        	public void keyReleased(KeyEvent keyEvent) {}
-        	public void keyTyped(KeyEvent keyEvent) {}
-
-        };
-        _content.addKeyListener(keyListenerFleche);
-        
-        this.setContentPane(_content);
-        this.setVisible(true);
-}
+				//a
+				if(keyEvent.getKeyCode() == 65)
+				{
+				}
+	      }
+	
+			public void keyReleased(KeyEvent keyEvent) {}
+			public void keyTyped(KeyEvent keyEvent) {}
+	
+	        };
+	        
+	        _content.addKeyListener(keyListener);
+	        
+	        KeyListener keyListenerFleche = new KeyListener()
+	        {
+	        	public void keyPressed(KeyEvent keyEvent)
+	        	{
+	        		if (keyEvent.getKeyCode() == 39)
+	        		{
+	        			//right
+	        			if( _gameData.get_palet().getPositionX() < _gameData.get_width() - _gameData.get_palet().get_width())
+	        			{
+	        				_gameData.get_palet().display(_gameData.get_palet().getPositionX() +6, _gameData.get_palet().getPositionY());
+	        			}
+	        		}
+	        		if (keyEvent.getKeyCode() == 37)
+	        		{
+	        			//left
+	        			if( _gameData.get_palet().getPositionX() > 0)
+	        			{
+	        				_gameData.get_palet().display(_gameData.get_palet().getPositionX() -6, _gameData.get_palet().getPositionY());
+	        			}
+	        		}
+	        	}
+	
+	        	public void keyReleased(KeyEvent keyEvent) {}
+	        	public void keyTyped(KeyEvent keyEvent) {}
+	
+	        };
+	        _content.addKeyListener(keyListenerFleche);
+	        
+	        this.setContentPane(_content);
+	        this.setVisible(true);
+	}
 
 	public void highScoresInterface(){
 		_content.setLayout(new BorderLayout(0,0));
@@ -465,5 +465,5 @@ public void playingInterface(){
 	
 	public static void displayScore(int score) {
 		_score.setText("Score : " + score);
-}
+	}
 }
