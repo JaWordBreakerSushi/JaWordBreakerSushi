@@ -11,13 +11,15 @@ public class PopupWindow extends JPanel {
     private JTextField wordProposed;
     private String _wordChosen;
     public JLabel result;
+	private static JLabel _score;
 	private static Color orange = new Color(253,111,15);
 
     /**
      * Constructor.
      */
-    public PopupWindow(String word) {
+    public PopupWindow(String word, JLabel score) {
     	_wordChosen = word;
+    	_score = score;
         init();
     }
     
@@ -87,12 +89,24 @@ public class PopupWindow extends JPanel {
                 String text = wordProposed.getText();
                 if(text.equals(_wordChosen)){
                 	result.setText("Congratulations! You find the right word!");
+                	int score = Game.get_score();
+                	score += 100;
+                	Game.set_score(score);
+                	displayScore(score);
                 }
                 else{
                 	result.setText("Sorry, you don't found the right word. Try again!");
+                	int score = Game.get_score();
+                	score -= 20;
+                	Game.set_score(score);
+                	displayScore(score);
                 }
                 popupWindow.requestFocusInWindow();
-            }        	
+            } 
+            
+        	public void displayScore(int score) {
+        		_score.setText("Score : " + score);
+        	}
         });
         
         pausePanelTop.add(title);
@@ -108,4 +122,6 @@ public class PopupWindow extends JPanel {
     public JFrame get_popupWindow(){
     	return popupWindow;
     }
+    
+
 }
