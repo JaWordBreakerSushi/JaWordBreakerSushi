@@ -87,7 +87,7 @@ public class Game {
 		char letter;
 		for(int i = 0; i < /*_levelNumber+3*/_selectedWord.length(); i++) {
 			letter = _selectedWord.charAt(i);
-			_listOfBrick.add(new Brick(gameArea, TypeOfGift.LETTER, letter));
+			_listOfBrick.add(new LetterBrick(gameArea, TypeOfGift.LETTER, letter));
 		}
 		
 		/*ball's Bricks*/

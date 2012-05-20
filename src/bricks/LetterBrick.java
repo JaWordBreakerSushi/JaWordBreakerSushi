@@ -9,7 +9,7 @@ public class LetterBrick extends Brick{
 	
 	public LetterBrick(JPanel gameArea, TypeOfGift gift, char letter2) {
 		
-		super(gameArea, gift, letter2);
+		super(gameArea, gift);
 		_letter = letter2;
 		super.set_letter(letter2);
 	}	
