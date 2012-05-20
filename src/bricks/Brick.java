@@ -34,12 +34,10 @@ public class Brick extends JPanel{
 		ImageIcon imgIcon = new ImageIcon(gift.getUrl());
 		JLabel img = new JLabel(imgIcon);
 		
-		img.setBackground(new Color(255,213,91));
+		this.setBackground(new Color(255,213,91));
 		
 		_width = imgIcon.getIconWidth();
 		_height = imgIcon.getIconHeight();
-		
-		img.setPreferredSize(new Dimension(_width, _height));
 		
 		this.add(img);
 
