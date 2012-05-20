@@ -40,13 +40,13 @@ public class Interface extends JFrame {
     
     public static void main(String[] args){
 
-    	AudioSound as = new AudioSound();
-}
+    	//AudioSound as = new AudioSound();
+    }
 
     public Interface(){
 
-		URL base = applet.getClass().getResource("/welcome.wav");
-		System.out.print(base);
+		/**URL base = applet.getClass().getResource("/welcome.wav");
+		System.out.print(base);*/
 		// load sounds and set currentSound
 		//sound = applet.getAudioClip(base, "welcome.wav");
 		//sound.play();
@@ -164,6 +164,7 @@ public class Interface extends JFrame {
 		JLabel borderBottomBackground = new JLabel(new ImageIcon("./src/img/border_bottom.jpg"));
 	        
 		ImagePanel menu = new ImagePanel("./src/img/background_menu.jpg");
+		menu.setPreferredSize(new Dimension(230, 600));
 		
 		/*Display in right panel*/
 		Font fontName = new Font("Arial", Font.BOLD, 18);
@@ -175,7 +176,7 @@ public class Interface extends JFrame {
 		name.setForeground(Color.WHITE);
 	        
 		/*Current Score*/
-		_score = new JLabel();
+		_score = new JLabel("");
 		_score.setPreferredSize(new Dimension(180, 25));
 		_score.setHorizontalAlignment(JLabel.LEFT);
 		_score.setFont(fontScore);
@@ -183,20 +184,28 @@ public class Interface extends JFrame {
 		_score.setText("Score : " + _gameData.get_score());
 	        
 		/*Current number of balls*/
-		_nbBalls = new JLabel();
+		_nbBalls = new JLabel("");
 		_nbBalls.setPreferredSize(new Dimension(180, 25));
 		_nbBalls.setHorizontalAlignment(JLabel.LEFT);
 		_nbBalls.setFont(fontScore);
 		_nbBalls.setForeground(Color.WHITE);
-		_nbBalls.setText("Ball : 0");
+		_nbBalls.setText("Ball : 1");
 		
 		/*Known letters*/
-		_letters = new JLabel();
+		_letters = new JLabel("");
 		_letters.setPreferredSize(new Dimension(180, 25));
 		_letters.setHorizontalAlignment(JLabel.LEFT);
 		_letters.setFont(fontScore);
 		_letters.setForeground(Color.WHITE);
 		_letters.setText("Letters :");
+		
+		/*Instructions*/
+		JLabel instructions = new JLabel("<html>Press ENTER <br/> to launch the ball <br/> Use ARROWS <br/> to move the bamboo </html>");
+		instructions.setPreferredSize(new Dimension(180, 675));
+		instructions.setHorizontalAlignment(JLabel.LEFT);
+		instructions.setHorizontalAlignment(JLabel.LEFT);
+		instructions.setFont(fontScore);
+		instructions.setForeground(Color.WHITE);
 		
 		borderTop.setBorder(new EmptyBorder(-5, -5, -5, -5) );
 		borderLeft.setBorder(new EmptyBorder(-5, -5, -5, -5) );
@@ -221,6 +230,7 @@ public class Interface extends JFrame {
 		menu.add(_score);
 		menu.add(_nbBalls);
 		menu.add(_letters);	
+		menu.add(instructions);
 		_content.add(menu);
 		
 		KeyListener keyListener = new KeyListener() {
@@ -241,6 +251,7 @@ public class Interface extends JFrame {
 						Game.set_start(false);
 					else
 						Game.set_start(true);
+
 				}
 	              //Enter
 				if (keyEvent.getKeyCode() == 10)
@@ -449,8 +460,9 @@ public class Interface extends JFrame {
 	/*Getters and Setters*/
 
 	public static void displayLetter(char letter) {
+		System.out.println(letter);
 	      _letters.setText(_letters.getText() + " " + letter);
-		}
+	}
 	
 	public static String chooseWordFromDico(){
 	     Random randomGenerator = new Random();

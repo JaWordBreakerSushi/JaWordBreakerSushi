@@ -10,7 +10,7 @@ public class AudioSound extends JApplet
 {
 
 	private static final long serialVersionUID = 1L;
-private AudioClip sound;  
+    private AudioClip sound;  
    
    public AudioSound(){
 	   init();

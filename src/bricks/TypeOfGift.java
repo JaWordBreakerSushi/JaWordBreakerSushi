@@ -1,9 +1,9 @@
 package bricks;
 
 public enum TypeOfGift {
-	BALL		("./src/img/fortune_cookies.png"),
-	LETTER		("./src/img/maki.png"),
-	BONUS		("./src/img/fortune_cookies.png"),
+	BALL		("./src/img/maki.png"),
+	LETTER		("./src/img/fortune_cookies.png"),
+	BONUS		("./src/img/maki.png"),
 	MAGIC		("./src/img/sushi.png"),
 	TEMPORAL	("./src/img/onigiri.png"),
 	FIXE		("./src/img/miso_fixe.png"),

@@ -72,7 +72,7 @@ public class Game {
 		level 2 => 4lettres
 		level n => n+2lettres*/
 		_selectedWord = game.Interface.chooseWordFromDico();
-		System.out.println("\n" + _selectedWord);
+		System.out.println(_selectedWord);
 		game.PopupWindow.set_wordChosen(_selectedWord);
 		
 		/*Ball to start*/
@@ -85,7 +85,7 @@ public class Game {
 		char letter;
 		for(int i = 0; i < /*_levelNumber+3*/_selectedWord.length(); i++) {
 			letter = _selectedWord.charAt(i);
-			_listOfBrick.add(new LetterBrick(gameArea, TypeOfGift.LETTER, letter));
+			_listOfBrick.add(new Brick(gameArea, TypeOfGift.LETTER, letter));
 		}
 		
 		/*ball's Bricks*/

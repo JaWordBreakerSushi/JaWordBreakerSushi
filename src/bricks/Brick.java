@@ -21,10 +21,9 @@ public class Brick extends JPanel{
 	private char letter;
 	private int _typeOfGift;
 	
-	/*Constructor*/
+	/*Constructors*/
 	public Brick(JPanel gameArea, TypeOfGift gift) {
 		super();
-		
 		_gift = gift;
 		ImageIcon imgIcon = new ImageIcon(gift.getUrl());
 		JLabel img = new JLabel(imgIcon);
@@ -36,8 +35,20 @@ public class Brick extends JPanel{
 		_gameArea = gameArea;		
 	}
 	
-	
-	
+	public Brick(JPanel gameArea, TypeOfGift gift, char letter2) {
+		super();
+		this.letter = letter2;
+		_gift = gift;
+		ImageIcon imgIcon = new ImageIcon(gift.getUrl());
+		JLabel img = new JLabel(imgIcon);
+		_width = imgIcon.getIconWidth();
+		_height = imgIcon.getIconHeight();
+		this.add(img);
+		this._isPositionned = false;
+			
+		_gameArea = gameArea;		
+	}
+
 	public void display(int positionX, int positionY) {
 		_positionX = positionX;
 		_positionY = positionY;
