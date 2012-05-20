@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<project name="TestAnt1" default="all">
+  <description>
+    Génération de l'application
+  </description>
+
+  <property name="bin" location="bin"/>
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="doc" location="${build}/doc"/>
+  <property name="lib" location="${build}/lib"/>
+  <property name="junit_path" value="junit.jar"/>
+
+  <target name="init" description="Initialisation">
+    <tstamp/>
+    <buildnumber file="numerobuild.txt" />
+    <echo message="Generation numero : ${build.number} du ${TODAY}"/>
+  </target>
+
+  <target name="compil" depends="init" description="Compilation">
+    <javac srcdir="${src}" destdir="${bin}">
+          <classpath>
+        <pathelement path="${java.class.path}"/>
+        <pathelement location="${junit_path}"/>
+      </classpath>
+    </javac>
+  </target>
+	
+	<target name="archive" depends="compil" description="Creation of .jar">
+		<jar destfile="dist/javaWordBreaker.jar" basedir="${bin}" />
+	</target>
+	
+	<target name="execute" depends="compil" description="run game">
+		<echo level="warning" message="running" />
+		<java
+			classname="Main"
+			classpath="${bin}">
+			
+			</java>
+	</target>
+
+  <target name="all" depends="init, compil, archive ,doc, execute" 
+    description="Generation complete">
+    <echo message="Generation complete."/>
+  </target>
+  <target name="doc" depends="compil" description="Generation documentation">
+    <javadoc destdir="${doc}" author="true" version="true" use="true" 
+      package="true">
+      <fileset dir = "${src}">
+        <include name="**/*.java"/>
+        <exclude name="**/*Test*"/>
+      </fileset>
+      <classpath>
+        <pathelement path="${java.class.path}"/>
+        <pathelement location="${junit_path}"/>
+      </classpath>
+    </javadoc>
+  </target>
+</project>
