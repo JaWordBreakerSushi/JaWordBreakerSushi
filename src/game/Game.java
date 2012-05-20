@@ -75,6 +75,8 @@ public class Game {
 		System.out.println(_selectedWord);
 		game.PopupWindow.set_wordChosen(_selectedWord);
 		
+		_palet.display(_width/2 - _palet.get_width()/2, _height - _palet.get_height());
+		
 		/*Ball to start*/
 		_listOfBall.add(new Ball(gameArea));
 		_listOfBall.get(0).display(_width/2 - (_listOfBall.get(0).get_width()/2), _palet.getPositionY() - _listOfBall.get(0).get_height());
@@ -120,11 +122,9 @@ public class Game {
 		for(int i = 0; i < _levelNumber+4; i++) {
 			_listOfBrick.add(new UnBreakableBrick(gameArea, TypeOfGift.MOVABLE));
 		}
-		System.out.println(_listOfBrick.size());
 		
 		/*place bricks*/
 		int bricksPerLine = (int)(_width/widthLargestBrick) -1;
-		System.out.println(bricksPerLine);
 		Brick brickToPlace = null;
 
 		/*ligne and col*/
