@@ -19,12 +19,12 @@ public class Game {
 	private static int _score = 0;
 	
 	/*Readed on scores ; dictionnary*/
-	private ArrayList<String> _listOfWords = new ArrayList<String>();
+	private static ArrayList<String> _listOfWords = new ArrayList<String>();
 	private LinkedList<Integer> _listOfScores = new LinkedList<Integer>();
 
 	/**/
 	private static String _selectedWord;
-	private int _levelNumber;
+	private static int _levelNumber;
 	private static LinkedList<Brick> _listOfBrick = new LinkedList<Brick>();
 	private static LinkedList<Ball> _listOfBall = new LinkedList<Ball>();
 	private static PaletBrick _palet;
@@ -34,22 +34,7 @@ public class Game {
 	
 	public Game(JPanel gameArea) {
 		_gameArea = gameArea;
-				
 		_levelNumber = 1;
-		/*SELECTIONNER LE MOT*/
-		
-		//Information :
-		/*level 1 => 3lettres
-		level 2 => 4lettres
-		level n => n+2lettres*/
-		this.prepareLevel(gameArea);
-	}
-	
-	public void passToTheNextLevel() {
-		_levelNumber++;
-	}
-	
-	public void prepareLevel(JPanel gameArea){
 		
 		/*palet's Brick (unique)*/
 		_palet = new PaletBrick(gameArea, TypeOfGift.PALET);
@@ -57,16 +42,48 @@ public class Game {
 		_palet.set_width(_palet.get_width() / 2);
 		_palet.display(this._width/2 - _palet.get_width()/2, this._height - _palet.get_height());
 		
+		prepareLevel(_gameArea);
+	}
+	
+	public static void passToTheNextLevel() {
+		_levelNumber++;
+		_selectedWord = null;
+		/*hide all Brick*/
+		for (int i = 0; i < _listOfBrick.size(); ++i)
+		{
+			_listOfBrick.get(i).hide();
+		}
+		_listOfBrick.clear();
+		for (int i = 0; i < _listOfBall.size(); ++i)
+		{
+			_listOfBall.get(i).setVisible(false);
+		}
+		_listOfBall.clear();
+		game.Interface.displayNbBalls(_listOfBall.size() + 1);
+		_start = false;
+		prepareLevel(_gameArea);
+		
+	}
+	
+	public static void prepareLevel(JPanel gameArea){
+		/*select word*/
+		//Information :
+		/*level 1 => 3lettres
+		level 2 => 4lettres
+		level n => n+2lettres*/
+		_selectedWord = game.Interface.chooseWordFromDico();
+		System.out.println("\n" + _selectedWord);
+		game.PopupWindow.set_wordChosen(_selectedWord);
+		
 		/*Ball to start*/
 		_listOfBall.add(new Ball(gameArea));
-		_listOfBall.get(0).display(this._width/2 - (_listOfBall.get(0).get_width()/2), _palet.getPositionY() - _listOfBall.get(0).get_height());
+		_listOfBall.get(0).display(_width/2 - (_listOfBall.get(0).get_width()/2), _palet.getPositionY() - _listOfBall.get(0).get_height());
 		
 		/*Depends of levelNumber*/
-		_selectedWord = "TEST";
 		
 		/*letter's Bricks*/
 		char letter;
-		for(int i = 0; i < _levelNumber+3; i++) {
+		for(int i = 0; i < /*_levelNumber+3*/_selectedWord.length(); i++) {
 			letter = _selectedWord.charAt(i);
 			_listOfBrick.add(new LetterBrick(gameArea, TypeOfGift.LETTER, letter));
 		}
@@ -105,8 +122,7 @@ public class Game {
 		}
 		
 		/*place bricks*/
-		int bricksPerLine = (int)(this._width/widthLargestBrick) -1;
-		int bricksPerCol = (int) (this._height/heightHigherBrick) -1;
+		int bricksPerLine = (int)(_width/widthLargestBrick) -1;
 		Brick brickToPlace = null;
 
 		/*ligne and col*/
@@ -148,7 +164,7 @@ public class Game {
 		return _selectedWord;
 	}
 
-	public void set_selectedWord(String selectedWord) {
+	public static void set_selectedWord(String selectedWord) {
 		_selectedWord = selectedWord;
 	}
 
@@ -206,5 +222,13 @@ public class Game {
 
 	public static void set_start(boolean start) {
 		_start = start;
+	}
+
+	public static ArrayList<String> get_listOfWords() {
+		return _listOfWords;
+	}
+
+	public void set_listOfWords(ArrayList<String> listOfWords) {
+		_listOfWords = listOfWords;
 	}	
 }

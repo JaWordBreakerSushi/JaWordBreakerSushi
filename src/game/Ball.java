@@ -16,7 +16,6 @@ public class Ball extends JPanel {
 	private int _size;
 	private int _width;
 	private int _height;
-	private float _masse = 0;
 	private JPanel _gameArea;
 	private int _timeToWait = 30;
 	
@@ -240,14 +239,6 @@ public class Ball extends JPanel {
 
 	public void set_height(int height) {
 		_height = height;
-	}
-
-	public float get_masse() {
-		return _masse;
-	}
-
-	public void set_masse(float masse) {
-		_masse = masse;
 	}
 
 	public int get_timeToWait() {

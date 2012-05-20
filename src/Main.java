@@ -7,11 +7,12 @@ import javax.swing.JApplet;
 
 import game.Game;
 import game.Interface;
+
 import game.MainWindow;
 
+public class Main extends JApplet{
 
-public class Main {
-	
+	private static final long serialVersionUID = 1L;
 	private static MainWindow _gameInterface;
 	private AudioClip sound;  
 	

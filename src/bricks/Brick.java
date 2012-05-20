@@ -83,7 +83,6 @@ public class Brick extends JPanel{
 		case 1:
 			int speedModificator;
 			speedModificator = (int)(Math.random() * (5- (-5))) + (-5);
-			System.out.println("CHANGMENT SPEED : " + speedModificator);
 			for(int i = 0; i< Game.get_listOfBall().size(); ++i)
 			{
 				Game.get_listOfBall().get(i).set_timeToWait(Game.get_listOfBall().get(i).get_timeToWait() + speedModificator);

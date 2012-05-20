@@ -26,7 +26,7 @@ public class Interface extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel _gameArea;
 	private Game _gameData;
-    private PopupWindow popup;
+    private static PopupWindow _popup;
     public Container _content = getContentPane();
     private JPanel _scoreList;
     private static JLabel _score;
@@ -38,9 +38,6 @@ public class Interface extends JFrame {
     private AudioClip sound;
     private Applet applet = new Applet();
     
-    private LinkedList<String> _dico;
-    private String _wordChosen;
-
     public static void main(String[] args){
 
     	//AudioSound as = new AudioSound();
@@ -60,9 +57,7 @@ public class Interface extends JFrame {
 		catch (IOException e){
 			System.out.println("IOException " + e.getMessage());
 		}
-		
-		_wordChosen = chooseWordFromDico();
-		
+			
 		setTitle("JaWordBreaker Sushi");
 		setSize(800, 586);
 		setLocationRelativeTo(null);
@@ -148,6 +143,8 @@ public class Interface extends JFrame {
 
 	public void playingInterface(){
 		Game.set_start(true);
+		
+		_popup = new PopupWindow();
 	
 		_content.setLayout(new BoxLayout(_content, BoxLayout.X_AXIS));
 		
@@ -239,17 +236,22 @@ public class Interface extends JFrame {
 		KeyListener keyListener = new KeyListener() {
 			public void keyPressed(KeyEvent keyEvent) {
 				if(KeyEvent.getKeyText(keyEvent.getKeyCode()) == "Espace"){
+					
+					
+					JFrame _popupWindow = _popup.get_popupWindow();
+					if(!_popupWindow.isVisible()){
+						_popupWindow.setVisible(true);
+						_popupWindow.setLocationRelativeTo(null);
+					}
+					else
+					{
+						_popupWindow.setVisible(true);
+					}
 					if (Game.is_start())
 						Game.set_start(false);
 					else
 						Game.set_start(true);
-					
-					popup = new PopupWindow(_wordChosen, _score);
-					JFrame popupWindow = popup.get_popupWindow();
-					if(!popupWindow.isVisible()){
-						popupWindow.setVisible(true);
-						popupWindow.setLocationRelativeTo(null);
-					}
+
 				}
 	              //Enter
 				if (keyEvent.getKeyCode() == 10)
@@ -257,6 +259,7 @@ public class Interface extends JFrame {
 					if (_gameData.get_listOfBall().size() > 0)
 					{
 						_gameData.get_listOfBall().getFirst().startBallTimer();
+						Game.set_start(true);
 					}
 				}
 				//a
@@ -271,6 +274,7 @@ public class Interface extends JFrame {
 	        };
 	        
 	        _content.addKeyListener(keyListener);
+	        _popup.addKeyListener(keyListener);
 	        
 	        KeyListener keyListenerFleche = new KeyListener()
 	        {
@@ -445,10 +449,9 @@ public class Interface extends JFrame {
 		DataInputStream dataIn = new DataInputStream(in);
 		BufferedReader br = new BufferedReader(new InputStreamReader(dataIn));
 		String strLine;
-		_dico = new LinkedList<String>();
 		
 		while((strLine = br.readLine()) != null){
-			_dico.add(strLine);
+			Game.get_listOfWords().add(strLine);
 		}
 		
 		dataIn.close();
@@ -457,13 +460,13 @@ public class Interface extends JFrame {
 	/*Getters and Setters*/
 
 	public static void displayLetter(char letter) {
-	      _letters.setText(_letters.getText() + " \n" + letter);
+	      _letters.setText(_letters.getText() + " " + letter);
 	}
 	
-	public String chooseWordFromDico(){
+	public static String chooseWordFromDico(){
 	     Random randomGenerator = new Random();
-	int index = randomGenerator.nextInt(_dico.size());    
-	return _dico.get(index);
+	int index = randomGenerator.nextInt(Game.get_listOfWords().size());    
+	return Game.get_listOfWords().get(index);
 	}
 	    
 	public static void displayNbBalls(int nb) {
