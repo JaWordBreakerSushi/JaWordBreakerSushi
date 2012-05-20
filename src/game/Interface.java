@@ -1,5 +1,7 @@
 package game;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.BufferedReader;
@@ -12,11 +14,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.net.URL;
+import java.util.LinkedList;
+import java.util.Random;
 
 import javax.swing.*;
 import javax.swing.border.*;
-
-
 
 import bricks.Brick;
 
@@ -24,22 +27,46 @@ public class Interface extends JFrame {
 	
 	private JPanel _gameArea;
 	private Game _gameData;
-    private PopupWindow popup = new PopupWindow();
+    private PopupWindow popup;
 	private Container _content = getContentPane();
 	private JPanel _scoreList;
 	private static Color jaune = new Color(255,213,91);
 	private static Color orange = new Color(253,111,15);
 	
+	private AudioClip sound;  
+	private Applet applet = new Applet();
+	
+	private LinkedList<String> _dico;
+	private String _wordChosen;
+	
 	public static void main(String[] args){
+		
+		//AudioSound as =  new AudioSound();
 		Interface game = new Interface();
 	}
 
 	public Interface(){
-		this.setTitle("JaWordBreaker Sushi");
-		this.setSize(800, 586);
-		this.setLocationRelativeTo(null);
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		URL base = applet.getClass().getResource("/welcome.wav"); 
+	    System.out.print(base);
+        // load sounds and set currentSound
+	    sound = applet.getAudioClip(base, "welcome.wav");
+	    //sound.play();
+		
+		try {
+			readDico();
+		}
+		catch (IOException e){
+			System.out.println("IOException " + e.getMessage());
+		}
+		
+		_wordChosen = chooseWordFromDico();
+		
+		setTitle("JaWordBreaker Sushi");
+		setSize(800, 586);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 _content.setFocusable(true);
 		startInterface();
 	}
@@ -64,7 +91,7 @@ public class Interface extends JFrame {
         
 		JLabel borderBottomBackground = new JLabel(new ImageIcon("./src/img/border_bottom_home.jpg"));
         
-        JButton start = new JButton(new ImageIcon("./src/img/button_normal.gif"));
+        JButton start = new JButton(new ImageIcon("./src/img/btn_normal_start.jpg"));
 		start.setPreferredSize(new Dimension(258, 47));
 		start.setFont(fontScore);
 		start.setForeground(Color.WHITE);
@@ -72,11 +99,11 @@ public class Interface extends JFrame {
 		start.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		start.setBorder(null);
 		start.setMargin(new Insets(0, 0, 0, 0));
-		start.setRolloverIcon(new ImageIcon("./src/img/button_over.gif"));
+		start.setRolloverIcon(new ImageIcon("./src/img/btn_hover_start.jpg"));
 		
         JLabel emptyLabel = new JLabel(" ");
 
-		JButton highScores = new JButton(new ImageIcon("./src/img/button_normal.gif"));
+		JButton highScores = new JButton(new ImageIcon("./src/img/btn_normal_hs.jpg"));
 		highScores.setPreferredSize(new Dimension(258, 47));
 		highScores.setFont(fontScore);
 		highScores.setForeground(Color.WHITE);
@@ -84,7 +111,7 @@ public class Interface extends JFrame {
 		highScores.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		highScores.setBorder(null);
 		highScores.setMargin(new Insets(0, 0, 0, 0));
-		highScores.setRolloverIcon(new ImageIcon("./src/img/button_over.gif"));
+		highScores.setRolloverIcon(new ImageIcon("./src/img/btn_hover_hs.jpg"));
 		
 		start.addActionListener(new ActionListener() {
 			 
@@ -183,6 +210,7 @@ public class Interface extends JFrame {
         KeyListener keyListener = new KeyListener() {
             public void keyPressed(KeyEvent keyEvent) {
               if(KeyEvent.getKeyText(keyEvent.getKeyCode()) == "Espace"){
+            	  popup = new PopupWindow(_wordChosen);
             	  JFrame popupWindow = popup.get_popupWindow();
             	  if(!popupWindow.isVisible()){
 	            	  popupWindow.setVisible(true);
@@ -338,4 +366,30 @@ public class Interface extends JFrame {
 		dataIn.close();
 	}
 	
+	public void readDico() throws IOException {
+		
+		File f = new File("./dico.txt");
+		InputStream in = new FileInputStream(f);
+		
+		DataInputStream dataIn = new DataInputStream(in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(dataIn));
+		String strLine;
+		_dico = new LinkedList<String>();
+		
+		while((strLine = br.readLine()) != null){ 
+			
+			_dico.add(strLine);
+			
+		}
+		
+		dataIn.close();
+	}
+	
+    public String chooseWordFromDico(){
+    	Random randomGenerator = new Random();
+    	int index = randomGenerator.nextInt(_dico.size());
+    	
+    	return _dico.get(index);
+    }
+    	
 }
