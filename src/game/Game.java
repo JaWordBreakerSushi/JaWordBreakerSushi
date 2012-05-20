@@ -72,8 +72,10 @@ public class Game {
 		level 2 => 4lettres
 		level n => n+2lettres*/
 		_selectedWord = game.Interface.chooseWordFromDico();
-		System.out.println("\n" + _selectedWord);
+		System.out.println(_selectedWord);
 		game.PopupWindow.set_wordChosen(_selectedWord);
+		
+		_palet.display(_width/2 - _palet.get_width()/2, _height - _palet.get_height());
 		
 		/*Ball to start*/
 		_listOfBall.add(new Ball(gameArea));
@@ -99,7 +101,7 @@ public class Game {
 		}
 //		int widthLargestBrick = _listOfBrick.getLast().get_width();
 //		int heightHigherBrick = _listOfBrick.getLast().get_height();
-		int widthLargestBrick = 86;
+		int widthLargestBrick = 84;
 		int heightHigherBrick = 44;
 		/*magic's' Bricks*/
 		for(int i = 0; i < _levelNumber+4; i++) {

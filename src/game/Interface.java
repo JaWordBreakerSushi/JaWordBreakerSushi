@@ -182,7 +182,7 @@ public class Interface extends JFrame {
 		_nbBalls.setHorizontalAlignment(JLabel.LEFT);
 		_nbBalls.setFont(fontScore);
 		_nbBalls.setForeground(Color.WHITE);
-		_nbBalls.setText("Ball : 1");
+		_nbBalls.setText("Ball : 0");
 		
 		/*Known letters*/
 		_letters = new JLabel("");

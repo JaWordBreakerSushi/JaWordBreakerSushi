@@ -93,7 +93,7 @@ public class PopupWindow extends JPanel {
                 	int score = Game.get_score();
                 	score += 100;
                 	Game.set_score(score);
-                	displayScore(score);
+                	game.Interface.displayScore(score);
 
                 	/*Next level*/
                 	Game.passToTheNextLevel();
@@ -103,14 +103,14 @@ public class PopupWindow extends JPanel {
                 	int score = Game.get_score();
                 	score -= 20;
                 	Game.set_score(score);
-                	displayScore(score);
+                	game.Interface.displayScore(score);
                 }
                 popupWindow.requestFocusInWindow();
             } 
             
-        	public void displayScore(int score) {
+        	/*public void displayScore(int score) {
         		_score.setText("Score : " + score);
-        	}
+        	}*/
         });
         
         pausePanelTop.add(title);

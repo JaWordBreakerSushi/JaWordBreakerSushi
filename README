@@ -1,1 +1,14 @@
 JaWordBreaker Sushi
+--------------------
+
+L'application peut être compilée via le build.xml présent à la racine du projet. (le détail de ses target est donné dans le rapport du projet).
+
+Pour lancer l'application, nous vous proposons d'ouvrir le projet dans un IDE tel que Eclipse et de faire un "run" le projet.
+Pour commencer le jeu, cliquer sur start game.
+Pour lancer la bille posée sur le palet, taper sur la touche "entrée".
+Pour déplacer le palet, utiliser les flèches du clavier.
+Pour mettre en pause taper sur la touche "espace" (la pause permet de proposer un mot).
+Pour valider un mot proposé, taper sur la touche "entrée".
+
+N.B. 	Il est possible qu'il faille cilquer dans le jeu pour ne paas être géné par la popup de pause pour quitter cette drenière.
+	Il est possible que la multiplication des billes et le fait qu'elle détruise simultanément une même brique multiplie l'affichage de la lettre.

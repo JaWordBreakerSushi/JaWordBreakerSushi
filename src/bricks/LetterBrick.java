@@ -7,9 +7,10 @@ public class LetterBrick extends Brick{
 	private static final long serialVersionUID = 1L;
 	public char _letter;
 	
-	public LetterBrick(JPanel gameArea, TypeOfGift gift, char letter) {
+	public LetterBrick(JPanel gameArea, TypeOfGift gift, char letter2) {
+		
 		super(gameArea, gift);
-		_letter = letter;
-		super.set_letter(letter);
+		_letter = letter2;
+		super.set_letter(letter2);
 	}	
 }
