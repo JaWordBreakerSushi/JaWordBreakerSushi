@@ -31,32 +31,31 @@ public class ImagePanel extends JPanel implements Serializable {
     _width = bgimage.getWidth(null);
     _height = bgimage.getHeight(null);
     g.drawImage(bgimage, 1, 1, _width, _height, null);
-    //System.out.println("IMG SIZE : " + _width +" , "+ _height);
   }
 
   
   /*Getters and Setters*/
-public String get_url() {
-	return _url;
-}
-
-public void set_url(String url) {
-	_url = url;
-}
-
-public int get_width() {
-	return _width;
-}
-
-public void set_width(int width) {
-	_width = width;
-}
-
-public int get_height() {
-	return _height;
-}
-
-public void set_height(int height) {
-	_height = height;
-}
+	public String get_url() {
+		return _url;
+	}
+	
+	public void set_url(String url) {
+		_url = url;
+	}
+	
+	public int get_width() {
+		return _width;
+	}
+	
+	public void set_width(int width) {
+		_width = width;
+	}
+	
+	public int get_height() {
+		return _height;
+	}
+	
+	public void set_height(int height) {
+		_height = height;
+	}
 }

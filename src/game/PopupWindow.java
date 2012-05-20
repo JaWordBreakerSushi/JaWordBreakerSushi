@@ -7,7 +7,8 @@ import java.awt.*;
 
 public class PopupWindow extends JPanel {
 
-    private JFrame popupWindow;
+	private static final long serialVersionUID = 1L;
+	private JFrame popupWindow;
     private JTextField wordProposed;
     private String _wordChosen;
     public JLabel result;
@@ -22,7 +23,7 @@ public class PopupWindow extends JPanel {
     }
     
     /**
-     * Initialiser.
+     * Init.
      */
     private void init() {
         // use frame

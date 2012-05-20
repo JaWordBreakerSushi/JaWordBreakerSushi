@@ -21,10 +21,9 @@ import java.util.Random;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import bricks.Brick;
-
 public class Interface extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel _gameArea;
 	private Game _gameData;
     private PopupWindow popup;
@@ -44,109 +43,108 @@ public class Interface extends JFrame {
 
     public static void main(String[] args){
 
-    	//AudioSound as = new AudioSound();
-    	Interface game = new Interface();
+    	AudioSound as = new AudioSound();
 }
 
     public Interface(){
 
-	URL base = applet.getClass().getResource("/welcome.wav");
-	System.out.print(base);
-	// load sounds and set currentSound
-	//sound = applet.getAudioClip(base, "welcome.wav");
-	//sound.play();
-	
-	try {
-		readDico();
-	}
-	catch (IOException e){
-		System.out.println("IOException " + e.getMessage());
-	}
-	
-	_wordChosen = chooseWordFromDico();
-	
-	setTitle("JaWordBreaker Sushi");
-	setSize(800, 586);
-	setLocationRelativeTo(null);
-	setResizable(false);
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	_content.setFocusable(true);
-	startInterface();
-}
-
-public void startInterface(){
-
-	_content.setLayout(new BorderLayout(0,0));
-	_content.setBackground(jaune);
-	
-	JPanel menu = new JPanel();
-	menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
-	menu.setBackground(jaune);
-	
-	Font fontScore = new Font("Arial", Font.BOLD, 18);
-	
-	JLabel title = new JLabel(new ImageIcon("./src/img/logo.jpg"));
-    title.setPreferredSize(new Dimension(800, 240));
-    title.setHorizontalAlignment(JLabel.CENTER);
-    title.setFont(fontScore);
-    title.setForeground(Color.WHITE);
-    title.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(0,0,110,0),title.getBorder()));
-	        
-	JLabel borderBottomBackground = new JLabel(new ImageIcon("./src/img/border_bottom_home.jpg"));
-	        
-    JButton start = new JButton(new ImageIcon("./src/img/btn_normal_start.jpg"));
-	start.setPreferredSize(new Dimension(258, 47));
-	start.setFont(fontScore);
-	start.setForeground(Color.WHITE);
-	start.setAlignmentX((float)0.5);
-	start.setCursor(new Cursor(Cursor.HAND_CURSOR));
-	start.setBorder(null);
-	start.setMargin(new Insets(0, 0, 0, 0));
-	start.setRolloverIcon(new ImageIcon("./src/img/btn_hover_start.jpg"));
-	
-    JLabel emptyLabel = new JLabel(" ");
-	
-	JButton highScores = new JButton(new ImageIcon("./src/img/btn_normal_hs.jpg"));
-	highScores.setPreferredSize(new Dimension(258, 47));
-	highScores.setFont(fontScore);
-	highScores.setForeground(Color.WHITE);
-	highScores.setAlignmentX((float)0.5);
-	highScores.setCursor(new Cursor(Cursor.HAND_CURSOR));
-	highScores.setBorder(null);
-	highScores.setMargin(new Insets(0, 0, 0, 0));
-	highScores.setRolloverIcon(new ImageIcon("./src/img/btn_hover_hs.jpg"));
-	
-	start.addActionListener(new ActionListener() {
-	
-		public void actionPerformed(ActionEvent e)
-	    {
-	        //Execute when button is pressed
-	        _content.removeAll();
-	        playingInterface();
-	        }
-	    });
-	
-	highScores.addActionListener(new ActionListener() {
-	
-		public void actionPerformed(ActionEvent e)
-		{
-			//Execute when button is pressed
-			_content.removeAll();
-			highScoresInterface();
+		URL base = applet.getClass().getResource("/welcome.wav");
+		System.out.print(base);
+		// load sounds and set currentSound
+		//sound = applet.getAudioClip(base, "welcome.wav");
+		//sound.play();
+		
+		try {
+			readDico();
 		}
-	});
+		catch (IOException e){
+			System.out.println("IOException " + e.getMessage());
+		}
+		
+		_wordChosen = chooseWordFromDico();
+		
+		setTitle("JaWordBreaker Sushi");
+		setSize(800, 586);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		_content.setFocusable(true);
+		startInterface();
+    }
+
+    public void startInterface(){
+
+		_content.setLayout(new BorderLayout(0,0));
+		_content.setBackground(jaune);
+		
+		JPanel menu = new JPanel();
+		menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
+		menu.setBackground(jaune);
+		
+		Font fontScore = new Font("Arial", Font.BOLD, 18);
+		
+		JLabel title = new JLabel(new ImageIcon("./src/img/logo.jpg"));
+	    title.setPreferredSize(new Dimension(800, 240));
+	    title.setHorizontalAlignment(JLabel.CENTER);
+	    title.setFont(fontScore);
+	    title.setForeground(Color.WHITE);
+	    title.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(0,0,110,0),title.getBorder()));
+		        
+		JLabel borderBottomBackground = new JLabel(new ImageIcon("./src/img/border_bottom_home.jpg"));
+		        
+	    JButton start = new JButton(new ImageIcon("./src/img/btn_normal_start.jpg"));
+		start.setPreferredSize(new Dimension(258, 47));
+		start.setFont(fontScore);
+		start.setForeground(Color.WHITE);
+		start.setAlignmentX((float)0.5);
+		start.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		start.setBorder(null);
+		start.setMargin(new Insets(0, 0, 0, 0));
+		start.setRolloverIcon(new ImageIcon("./src/img/btn_hover_start.jpg"));
+		
+	    JLabel emptyLabel = new JLabel(" ");
 	
-	menu.add(start);
-	menu.add(emptyLabel);
-	menu.add(highScores);
+		JButton highScores = new JButton(new ImageIcon("./src/img/btn_normal_hs.jpg"));
+		highScores.setPreferredSize(new Dimension(258, 47));
+		highScores.setFont(fontScore);
+		highScores.setForeground(Color.WHITE);
+		highScores.setAlignmentX((float)0.5);
+		highScores.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		highScores.setBorder(null);
+		highScores.setMargin(new Insets(0, 0, 0, 0));
+		highScores.setRolloverIcon(new ImageIcon("./src/img/btn_hover_hs.jpg"));
+		
+		start.addActionListener(new ActionListener() {
+		
+			public void actionPerformed(ActionEvent e)
+		    {
+		        //Execute when button is pressed
+		        _content.removeAll();
+		        playingInterface();
+		        }
+		    });
+		
+		highScores.addActionListener(new ActionListener() {
+		
+			public void actionPerformed(ActionEvent e)
+			{
+				//Execute when button is pressed
+				_content.removeAll();
+				highScoresInterface();
+			}
+		});
+		
+		menu.add(start);
+		menu.add(emptyLabel);
+		menu.add(highScores);
 	
-	_content.add(menu, BorderLayout.CENTER);
-	_content.add(title, BorderLayout.NORTH);
-	_content.add(borderBottomBackground, BorderLayout.SOUTH);
-	
-	this.setContentPane(_content);
-	this.setVisible(true);
-}
+		_content.add(menu, BorderLayout.CENTER);
+		_content.add(title, BorderLayout.NORTH);
+		_content.add(borderBottomBackground, BorderLayout.SOUTH);
+		
+		this.setContentPane(_content);
+		this.setVisible(true);
+	}
 
 	public void playingInterface(){
 		Game.set_start(true);
@@ -446,7 +444,7 @@ public void startInterface(){
 		dataIn.close();
 	}
 
-/*Getters and Setters*/
+	/*Getters and Setters*/
 
 	public static void displayLetter(char letter) {
 	      _letters.setText(_letters.getText() + " \n" + letter);
