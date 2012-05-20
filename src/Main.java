@@ -23,6 +23,7 @@ public class Main {
 
 		_gameInterface.showWindow();
 		
+		
         /*java.applet.AudioClip clip = java.applet.Applet.newAudioClip(new java.net.URL( "file:/home/amethyste/Bureau/JAVA/JaWordBreakerSushi/welcome.wav"));
         clip.play();*/
 		
