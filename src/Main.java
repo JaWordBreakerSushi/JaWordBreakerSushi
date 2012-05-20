@@ -1,9 +1,10 @@
 import game.Game;
+import game.Interface;
 import game.MainWindow;
 
+import javax.swing.JApplet;
 
-
-public class Main {
+public class Main extends JApplet{
 	
 	private static MainWindow _gameInterface;
 	
@@ -12,8 +13,7 @@ public class Main {
 		/*Initiate the game*/
 		
 		_gameInterface = new MainWindow();
-		
-		
+
 		_gameInterface.showWindow();
 		
 		//Game game = new Game();
