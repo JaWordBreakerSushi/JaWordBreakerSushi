@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -34,13 +35,6 @@ public class Interface extends JFrame {
     private static JLabel _nbBalls;
     private static Color jaune = new Color(255,213,91);
     private static Color orange = new Color(253,111,15);
-
-    private AudioClip sound;
-    private Applet applet = new Applet();
-    
-    public static void main(String[] args){
-
-    }
 
     public Interface(){
 		
@@ -162,7 +156,7 @@ public class Interface extends JFrame {
 		/*Display in right panel*/
 		Font fontName = new Font("Arial", Font.BOLD, 18);
 		Font fontScore = new Font("Arial", Font.BOLD, 15);
-		JLabel name = new JLabel("Amethyste");
+		JLabel name = new JLabel("Joueur");
 		name.setPreferredSize(new Dimension(180, 35));
 		name.setHorizontalAlignment(JLabel.LEFT);
 		name.setFont(fontName);
@@ -230,9 +224,8 @@ public class Interface extends JFrame {
 			public void keyPressed(KeyEvent keyEvent) {
 				if(KeyEvent.getKeyText(keyEvent.getKeyCode()) == "Espace"){
 					
-					
 					JFrame _popupWindow = _popup.get_popupWindow();
-					if(!_popupWindow.isVisible()){
+					if(!_popupWindow.isVisible()){						
 						_popupWindow.setVisible(true);
 						_popupWindow.setLocationRelativeTo(null);
 					}

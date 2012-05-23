@@ -12,8 +12,10 @@ public class PopupWindow extends JPanel {
     private JTextField wordProposed;
     private static String _wordChosen;
     public JLabel result;
+    private JLabel word;
 	private static JLabel _score;
 	private static Color orange = new Color(253,111,15);
+	private String _letters;
 
     /**
      * Constructor.
@@ -37,6 +39,7 @@ public class PopupWindow extends JPanel {
               if(KeyEvent.getKeyText(keyEvent.getKeyCode()) == "Espace"){
             	  if(popupWindow.isVisible()){
 	            	  popupWindow.setVisible(false);
+	            	  Game.set_start(true);
             	  }
               }
             }
@@ -76,7 +79,7 @@ public class PopupWindow extends JPanel {
         result.setHorizontalAlignment(JLabel.CENTER);
         result.setForeground(Color.WHITE);
         
-        JLabel word = new JLabel("_ _ _ _ _ _ _");
+        word = new JLabel("Votre mot :");
         word.setPreferredSize(new Dimension(350, 35));
         word.setHorizontalAlignment(JLabel.CENTER);
         word.setFont(fontName);
@@ -89,6 +92,7 @@ public class PopupWindow extends JPanel {
                 String text = wordProposed.getText();
                 if(text.equals(_wordChosen)){
                 	result.setText("Congratulations! You find the right word!");
+                	wordProposed.setText("");
 
                 	int score = Game.get_score();
                 	score += 100;
@@ -97,6 +101,7 @@ public class PopupWindow extends JPanel {
 
                 	/*Next level*/
                 	Game.passToTheNextLevel();
+                	
                 }
                 else{
                 	result.setText("Sorry, you don't found the right word. Try again!");
@@ -107,10 +112,7 @@ public class PopupWindow extends JPanel {
                 }
                 popupWindow.requestFocusInWindow();
             } 
-            
-        	/*public void displayScore(int score) {
-        		_score.setText("Score : " + score);
-        	}*/
+
         });
         
         pausePanelTop.add(title);
